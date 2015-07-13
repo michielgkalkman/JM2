@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Lesson>
+<Category name="Alle">
+<Deck>
+<Card AmountLearnedBack="0" AmountLearnedFront="0" Backside="Do you see a picture?" DateCreated="31-May-2012 21:50:57" DateModified="31-May-2012 21:50:57" DateTouched="31-May-2012 21:50:57" Frontside="" TestsHit="0" TestsTotal="0">
+<Side>
+<image id="BerichtHandlers.gif"/>
+</Side>
+<Side/>
+</Card>
+</Deck>
+</Category>
+<statistics/>
+</Lesson>

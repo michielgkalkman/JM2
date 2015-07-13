@@ -1,0 +1,348 @@
+﻿#
+# This is a translation file for jMemorize (http://www.riad.de/jmemorize)
+#
+# ------------------------------------------------------------------------------
+# Author:             Yannis Kaskamanidis / Panagiotis Tsirigotis
+# Language:           Greek (el)
+# jMemorize-Version:  1.2.3
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC είναι το κείμενο που θα εμφανίζεται ως συμβουλή οθόνης.
+#   TITLE είναι ο τίτλος του νέου παράθυρου / διαλόγου.
+
+# general
+
+General.CATEGORY          = Κατηγορία
+General.CREATED           = Δημιουργήθηκε
+General.MODIFIED          = Τροποποιήθηκε
+General.EXPIRES           = Λήγει
+General.LAST_TEST         = Τελευταία δοκιμασία
+General.DECK              = πακέτο
+General.DECKS             = Πακέτα
+General.FRONTSIDE         = Μπροστινή όψη
+General.FLIPSIDE          = Πίσω όψη
+General.OKAY              = Εντάξει
+General.APPLY             = Εφαρμογή
+General.CANCEL            = Ακύρωση
+General.ROOT_CATEGORY     = Όλα
+General.GENERAL           = Γενικά
+General.PASSED            = Πέρασε
+General.UNLEARNED         = Μη διδαγμένο
+General.EXPIRED           = Έληξε
+General.IMAGE             = Εικόνα
+
+General.EMPTY_SIDES_ALERT       = Πρέπει να καθορίσετε και τις δύο πλευρές της κάρτας.
+General.EMPTY_SIDES_ALERT_TITLE = Εσφαλμένες πλευρές καρτών
+
+# main frame
+
+MainFrame.ABOUT              = Σχετικά
+MainFrame.ABOUT_DESC         = Σχετικά με αυτή την εφαρμογή
+
+MainFrame.ADD_CARD           = Προσθήκη κάρτας
+MainFrame.ADD_CARD_DESC      = Προσθήκη νέας κάρτας
+
+MainFrame.ADD_CATEGORY       = Προσθήκη κατηγορίας
+MainFrame.ADD_CATEGORY_DESC  = Προσθήκη νέας κατηγορίας
+MainFrame.ADD_CATEGORY_INPUT = Καταχωρήστε το όνομα της νέας κατηγορίας που θέλετε να δημιουργήσετε.
+
+MainFrame.CATEGORY_TREE      = Δενδροειδής διάταξη κατηγοριών
+MainFrame.CATEGORY_TREE_DESC = Εμφάνιση/Απόκρυψη δενδροειδούς διάταξης κατηγοριών
+
+MainFrame.COPY               = Αντιγραφή
+MainFrame.CUT                = Αποκοπή
+MainFrame.PASTE              = Επικόλληση
+MainFrame.DELETE             = Διαγραφή
+
+MainFrame.DELETE_CARDS_WARN       = Πρόκειται να διαγράψετε {0} κάρτα(ες). Θέλετε να συνεχίσετε;
+MainFrame.DELETE_CARDS_WARN_TITLE = Διαγραφή κάρτας
+MainFrame.DELETE_CATEGORY_WARN  = Διαγράφοντας την κατηγορία {0} θα διαγραφούν {1} κάρτες. Θέλετε να συνεχίσετε;
+
+MainFrame.EDIT_CARD             = Επεξεργασία κάρτας
+MainFrame.EDIT_CARD_DESC        = Επεξεργασία και εμφάνιση λεπτομερειών κάρτας
+
+MainFrame.ERROR_TITLE           = Σφάλμα
+MainFrame.ERROR_LOAD            = Ένα σφάλμα συνέβη κατά τη φόρτωση του αρχείου {0}.
+MainFrame.ERROR_SAVE            = Ένα σφάλμα συνέβη κατά την αποθήκευση του αρχείου {0}. Το μάθημα δεν έχει αποθηκευτεί.
+
+MainFrame.EXIT                  = Έξοδος
+MainFrame.EXIT_DESC             = Έξοδος από την εφαρμογή
+
+MainFrame.FILE_FILTER_DESC      = Μαθήματα του jMemorize
+MainFrame.PDF_FILE_FILTER_DESC	= PDF - Μορφή Φορητού Αρχείου (.pdf)
+
+MainFrame.FIND                  = Εύρεση
+MainFrame.FIND_DESC             = Εύρεση καρτών
+
+MainFrame.LEARN                 = Εκμάθηση
+MainFrame.LEARN_DESC            = Έναρξη συνεδρίας εκμάθησης με όλες τις μη διδαχθείσες και ληγμένες κάρτες
+
+MainFrame.MENU_FILE             = Αρχείο
+MainFrame.MENU_EDIT             = Επεξεργασία
+MainFrame.MENU_HELP             = Βοήθεια
+MainFrame.MENU_LESSON           = Μάθημα
+
+MainFrame.NEW                   = Δημιουργία
+MainFrame.NEW_DESC              = Δημιουργία κενού μαθήματος
+
+MainFrame.UNNAMED_LESSON        = Νέο μάθημα
+
+MainFrame.OPEN                  = Άνοιγμα
+MainFrame.OPEN_DESC             = Άνοιγμα αρχείου μαθήματος
+
+MainFrame.REMOVE_CATEGORY_TITLE = Διαγραφή κατηγορίας
+MainFrame.REMOVE_DESC           = Αφαίρεση αντικειμένου(ων) που μόλις επιλέχθηκαν
+
+MainFrame.RESET                 = Επαναφορά κάρτας
+MainFrame.RESET_DESC            = Επαναφορά στατιστικών κάρτας
+MainFrame.RESET_WARN            = Πρόκειται να επαναφέρετε {0} κάρτα(ες). Θέλετε να συνεχίσετε;
+
+MainFrame.SAVE                  = Αποθήκευση
+MainFrame.SAVE_DESC             = Αποθήκευση μαθήματος
+MainFrame.SAVE_AS               = Αποθήκευση ως...
+MainFrame.SAVE_AS_DESC          = Αποθήκευση μαθήματος ως...
+MainFrame.SAVE_MODIFIED         = Το μάθημα έχει τροποποιηθεί. Θέλετε να το αποθηκεύσετε πριν την έξοδο;
+
+MainFrame.IMPORT                = Εισαγωγή
+
+MainFrame.EXPORT                = Εξαγωγή
+MainFrame.EXPORT_PDF            = Μορφή Φορητού Αρχείου (*.pdf)
+MainFrame.EXPORT_RTF            = Μορφή εμπλουτισμένου κειμένου (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = Εξαγωγή σε *.pdf
+MainFrame.EXPORT_RTF_DESC       = Εξαγωγή σε *.rtf
+MainFrame.EXPORT_CLEAN          = Μάθημα χωρίς προσωπικές λεπτομέρειες εκμάθησης
+
+MainFrame.PREFERENCES           = Προτιμήσεις
+MainFrame.PREFERENCES_DESC      = Ρυθμίστε τις προτιμήσεις σας
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = Αντικατάσταση αρχείου;
+MainFrame.CONFIRM_OVERWRITE = Το αρχείο υπάρχει ήδη. Θέλετε να το αντικαταστήσετε;
+
+MainFrame.SELECT_CHARACTER_SET  = Παρακαλώ επιλέξτε το σύνολο των χαρακτήρων του αρχείου.
+MainFrame.CHARACTER_SET         = Σύνολο χαρακτήρων
+
+MainFrame.RENAME                = Μετονομασία
+MainFrame.RENAME_INPUT          = Παρακαλώ εισάγετε το νέο όνομα.
+
+# files
+
+File.CSV                     = Τιμές διαχωρισμένες με κόμμα (*.csv)
+File.TSV                     = Τιμές διαχωρισμένες με tab (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = Αρχική σελίδα
+URL.MANUAL                   = Εγχειρίδιο χρήστη
+URL.FEATURE_TRACKER          = Λειτουργία ανιχνευτή
+URL.BUG_TRACKER              = Ανιχνευτής σφαλμάτων
+
+# preferences
+
+Preferences.USE_GZIP            = Συμπίεση μαθημάτων σε μορφή GZIP.
+Preferences.LANGUAGE            = Γλώσσα
+Preferences.RESTART             = Η επιλογή νέας γλώσσας που κάνατε θα εμφανιστεί την επόμενη φορά που θα εκκινήσετε την εφαρμογή.
+
+Preferences.FONT_SETTINGS       = Ρυθμίσεις γραμματοσειράς
+Preferences.FONT                = Γραμματοσειρά
+Preferences.SIZE                = Μέγεθος
+Preferences.PREVIEW             = Προεπισκόπηση
+
+Preferences.ALIGNMENT           = Στοίχιση 
+Preferences.ALIGN_LEFT          = Αριστερά
+Preferences.ALIGN_CENTER        = Κεντραρισμένη
+Preferences.ALIGN_RIGHT         = Δεξιά
+Preferences.VERT_ALIGN          = Κεντραρισμένη κάθετα
+
+# card table
+
+CardTable.COLUMNS               = Στήλες
+CardTable.NO_DATE_DESC          = Αυτή η κάρτα δεν έχει ελεγχθεί ποτέ.
+CardTable.NOT_LEARNED           = δεν έχει διδαχθεί
+CardTable.PATH                  = Διαδρομή
+CardTable.SELECTED_CARDS        = Επιλεγμένες κάρτες
+
+# deck chart
+
+DeckChart.CARDS              = Κάρτες
+DeckChart.START_DECK         = Κατάστρωμα εκκίνησης
+DeckChart.SUMMARY            = Περίληψη
+DeckChart.EXPIRED_CARDS      = Ληγμένες κάρτες
+DeckChart.LEARNED_CARDS      = Κάρτες που έχουν διδαχθεί
+DeckChart.UNLEARNED_CARDS    = Μη διδαγμένες κάρτες
+
+Summary.LEARNED              = Διδάχθηκε
+Summary.FAILED               = Απέτυχε
+Summary.RELEARNED            = Επαναδιδάχθηκε
+Summary.SKIPPED              = Παρακάμφθηκε
+
+# session chart
+
+SessionChart.THIS_SESSION    = Αυτή η συνεδρία
+SessionChart.AVERAGE_SESSION = Μεσαία συνεδρία
+
+# deck table
+
+DeckTable.NEXT_DECK          = Επόμενο κατάστρωμα
+DeckTable.NEXT_DECK_DESC     = Εμφάνιση επόμενου καταστρώματος.
+DeckTable.PREV_DECK          = Προηγούμενο κατάστρωμα
+DeckTable.PREV_DECK_DESC     = Εμφάνιση προηγούμενου καταστρώματος.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = Ποσοστό επιτυχίας
+EditCard.DETAILS_HISTORY     = Ιστορικό λεπτομερειών
+
+EditCard.MODIFIED_WARN       = Οι καταχωρήσεις της κάρτας έχουν τροποποιηθεί. Θέλετε να τις εφαρμόσετε πριν συνεχίσετε;
+EditCard.MODIFIED_WARN_TITLE = Η κάρτα έχει τροποποιηθεί.
+
+EditCard.NEXT_CARD         = Επόμενη κάρτα
+EditCard.NEXT_CARD_DESC    = Εμφάνιση επόμενης κάρτας
+
+EditCard.PREV_CARD         = Προηγούμενη κάρτα
+EditCard.PREV_CARD_DESC    = Εμφάνιση προηγούμενης κάρτας
+
+EditCard.REMOVE_CARD       = Αφαίρεση κάρτας
+EditCard.REMOVE_CARD_DESC  = Αφαίρεση τρέχουσας κάρτας
+
+EditCard.REMOVE_CARD_WARN  = Είστε σίγουρος ότι θέλετε να διαγράψετε αυτή την κάρτα;
+EditCard.REMOVE_CARD_WARN_TITLE = Διαγραφή κάρτας
+
+EditCard.RESET_CARD        = Επαναφόρτωση κάρτας
+EditCard.RESET_CARD_DESC   = Επαναφορτώνει την τρέχουσα κάρτα
+EditCard.RESET_CARD_WARN   = Η επαναφόρτωση αυτής της κάρτας θα την μετακινήσει πίσω στο πρώτο κατάστρωμα.\nΕίστε σίγουρος;
+
+EditCard.TAB_SIDES         = Πλευρές
+EditCard.TAB_PROPERTIES    = Επιλογές
+
+# find tool
+
+FindTool.FIND          = Αναζήτηση
+FindTool.BOTH_SIDES    = Και τις δύο πλευρές
+FindTool.MATCH_CASE    = Ταίριασμα πεζών-κεφαλαίων
+FindTool.RESULTS       = Αποτελέσματα
+FindTool.SEARCH_TEXT   = Αναζήτηση κειμένου
+FindTool.SETTINGS      = Ρυθμίσεις
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = Προσπαθήστε να θυμηθείτε την απάντηση
+Learn.DID_YOU_KNOW_ANSWER    = Ξέρετε τη σωστή απάντηση;
+Learn.YES                    = Ναι
+Learn.NO                     = Όχι
+
+Learn.CARD_COUNTER           = Μετρητής καρτών
+Learn.FLIPPED_CARD_SIDES     = Γύρισμα πλευρών κάρτας
+Learn.SHOW_ANSWER            = Εμφάνιση απάντησης
+Learn.SHOW_CATEGORY          = Εμφάνιση κατηγορίας
+Learn.SKIP_CARD              = Παράλειψη κάρτας
+Learn.STOP                   = Διακοπή εκμάθησης
+Learn.TIMER                  = Χρονόμετρο
+
+Learn.SESSION_RESULTS        = Αποτελέσματα συνεδρίας  
+Learn.CARD_PROGRESS          = Πρόοδος κάρτας
+Learn.SESSION_PROGRESS       = Πρόοδος συνεδρίας
+
+# learn settings
+
+LearnSettings.ADVANCED          = Για προχωρημένους
+LearnSettings.SCHEDULING        = Προγραμματισμός
+
+LearnSettings.CARDS_TO_LEARN    = Κάρτες προς εκμάθηση
+LearnSettings.LEARN_UNLEARNED_EXPIRED = Εκμάθηση όλων των μη εκμαθημένων και ληγμένων καρτών.
+LearnSettings.LEARN_UNLEARNED   = Εκμάθηση μόνο των μη εκμαθημένων καρτών.
+LearnSettings.LEARN_EXPIRED     = Εκμάθηση μόνο των μη ληγμένων καρτών.
+LearnSettings.LEARN_SELECTED    = Εκμάθηση των επιλεγμένων καρτών.
+
+LearnSettings.CARDS_ORDER       = Σειρά καρτών
+LearnSettings.SHUFFLE_CARDS     = Αναδιάταξη των καρτών όλων των καταστρωμάτων και των κατηγοριών.
+LearnSettings.SHUFFLE_RATIO     = Ποσοστό καρτών που δεν πρέπει να ταξινομηθούν με το επίπεδο του καταστρώματός τους.
+LearnSettings.GROUP_CARDS       = Ομαδοποίηση καρτών ανά κατηγορίες κατά τη διάρκεια της εκμάθησης.
+LearnSettings.NATURAL_CATEGORY_ORDER = Εμφάνιση κατηγοριών σε σταθερή φυσική σειρά.
+LearnSettings.RANDOM_CATEGORY_ORDER = Εμφάνιση κατηγοριών σε τυχαία σειρά.
+
+LearnSettings.DELIMITERS          = Οριοθέτες
+LearnSettings.CARD_LIMIT          = Όριο κάρτας
+LearnSettings.CARD_LIMIT_TEXT     = Περιορισμός ελέγχου αριθμού καρτών για όριο σε αυτή τη συνεδρία.
+LearnSettings.TIME_LIMIT          = Όριο λεπτού
+LearnSettings.TIME_LIMIT_TEXT     = Ολοκλήρωση συνεδρίας όταν ο καθορισμένος χρόνος τελειώσει.
+LearnSettings.DONT_RETEST_FAILED  = Να μην επανελεγχθούν οι κάρτες που απέτυχαν σε αυτή τη συνεδρία.
+
+LearnSettings.SCHEDULE_PRESETS    = Προγραμματισμένες εργασίες
+LearnSettings.DELAY_AFTER_LEVEL   = Καθυστέρηση μετά το επίπεδο {0}
+LearnSettings.DAYS                = Ημέρες
+LearnSettings.HOURS               = Ώρες
+LearnSettings.MINUTES             = Λεπτά
+LearnSettings.FIXED_EXPIRATION_TIME = Χρήση καθορισμένου χρόνου σε ώρες και λεπτά για τη λήξη. 
+
+LearnSettings.SIDE_MODE           = Λειτουργία πλευράς
+LearnSettings.NORMAL_MODE         = Εκμάθηση σε κανονική κατάσταση.
+LearnSettings.FLIP_MODE           = Εκμάθηση με γυρισμένες πλευρές καρτών.
+LearnSettings.RANDOM_MODE         = Εκμάθηση σε τυχαία κατάσταση με τις πλευρές των καρτών τυχαία γυρισμένες.
+LearnSettings.BOTH_MODE           = Εκμάθηση κάθε πλευράς των καρτών όσο συχνά έχει καθοριστεί.
+
+LearnSettings.START         = Έναρξη συνεδρίας\!
+LearnSettings.TITLE         = Ρυθμίσεις εκμάθησης
+
+# new card
+
+NewCard.ADD                 = Προσθήκη
+NewCard.ADD_AND_NEXT        = Προσθήκη και δημιουργία επόμενου
+
+NewCard.EDIT_RECENTLY       = Επεξεργασία πρόσφατης
+NewCard.EDIT_RECENTLY_DESC  = Επεξεργασία πρόσφατα δημιουργημένης κάρτας
+
+NewCard.NEW_WINDOW          = Νέο παράθυρο
+NewCard.NEW_WINDOW_DESC     = Άνοιγμα νέου παραθύρου προσθήκης κάρτας
+
+NewCard.TITLE               = Δημιουργία κάρτας
+
+NewCard.CLOSE_WARN          = Προειδοποίηση
+NewCardManager.DISMISSED_WARN = Τα δεδομένα της κάρτας πρόκειται να απορριφθούν.\nΘέλετε να δημιουργήσετε την κάρτα πριν κλείσει το παράθυρο;
+
+# status bar
+
+StatusBar.CARDS             = Κάρτες
+StatusBar.EXPIRED           = Ληγμένες
+StatusBar.LEARNED           = Διδάχθηκε
+StatusBar.UNLEARNED         = Μη διδαγμένη
+StatusBar.PARTIAL           = Μερικώς διδαγμένη
+
+StatusBar.LEARNING_CATEGORY = Κατηγορία εκμάθησης
+StatusBar.CARDS_LEFT        = Κάρτες που απέμειναν
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = Γραμμικό (Προεπιλεγμένο)
+Strategy.CONSTANT_SCHEDULE        = Συνεχές
+Strategy.EXPONENTIAL_SCHEDULE     = Εκθετικό
+Strategy.QUADRATIC_SCHEDULE       = Δεύτερου βαθμού
+Strategy.CRAM_SCHEDULE            = Στοίβα
+Strategy.CUSTOM_SCHEDULE          = Προσαρμοσμένο
+
+# time related
+
+Time.DAYS               = ημέρες
+Time.ONE_DAY            = μία ημέρα
+Time.HOURS              = ώρες
+Time.ONE_HOUR           = μια ώρα
+Time.MINUTES            = λεπτά
+Time.ONE_MINUTE         = ένα λεπτό
+Time.SECONDS            = δευτερολέπτα
+
+Time.PASSED             = πέρασε
+
+Time.IN                 = σε {0}
+Time.AGO                = {0} πριν
+
+# learn history
+
+History.TITLE = Ιστορικό
+History.ACTION = Εμφάνιση ιστορικού
+History.RECENT = Πρόσφατες συνεδρίες
+History.BY_DATE = Συνεδρίες ανά ημέρα
+History.BY_WEEK = Συνεδρίες ανά εβδομάδα
+History.BY_MONTH = Συνεδρίες ανά μήνα
+History.BY_YEAR = Συνεδρίες ανά έτος
+History.SESSION_DURATION = Διάρκεια συνεδρίας

@@ -1,0 +1,348 @@
+﻿#
+# This is a translation file for jMemorize (http://jmemorize.org/)
+#
+# ------------------------------------------------------------------------------
+# Author:             Frank Yong-Kyung Oh <kenshin579@gmail.com>
+# Language:           Korean (ko)
+# jMemorize-Version:  1.3.0
+# ------------------------------------------------------------------------------
+#
+# Notes:
+#   DESC is the text that will show up as tooltip.
+#   TITLE is the title of the new window / dialog.
+
+# general
+
+General.CATEGORY          = 카테고리
+General.CREATED           = 만들어진 날짜
+General.MODIFIED          = 수정된 날짜
+General.EXPIRES           = 만기된 날짜
+General.LAST_TEST         = 최종 테스트
+General.DECK              = 덱
+General.DECKS             = 덱
+General.FRONTSIDE         = 앞면
+General.FLIPSIDE          = 뒷면
+General.OKAY              = 확인
+General.APPLY             = 적용
+General.CANCEL            = 취소
+General.ROOT_CATEGORY     = 전체
+General.GENERAL           = 일반
+General.PASSED            = 통과율
+General.UNLEARNED         = 외우지 못한 카드
+General.EXPIRED           = 만기된 카드
+General.IMAGE             = 이미지
+
+General.EMPTY_SIDES_ALERT       = 양면 모두 작성해야 합니다.
+General.EMPTY_SIDES_ALERT_TITLE = 입력 잘못된 카드
+
+# main frame
+
+MainFrame.ABOUT              = 정보
+MainFrame.ABOUT_DESC         = 이 프로그램에 대한 정보
+
+MainFrame.ADD_CARD           = 카드 추가
+MainFrame.ADD_CARD_DESC      = 새 카드를 추가합니다.
+
+MainFrame.ADD_CATEGORY       = 카테고리 추가
+MainFrame.ADD_CATEGORY_DESC  = 새로운 카테고리를 추가합니다. 
+MainFrame.ADD_CATEGORY_INPUT = 새로운 카테고리 명을 입력합니다. 
+
+MainFrame.CATEGORY_TREE      = 카테고리 트리
+MainFrame.CATEGORY_TREE_DESC = 카테고리 트리 보이기/감추기
+
+MainFrame.COPY               = 복사
+MainFrame.CUT                = 잘라내기
+MainFrame.PASTE              = 붙이기
+MainFrame.DELETE             = 삭제
+
+MainFrame.DELETE_CARDS_WARN       = {0} 카드를 삭제하려고 합니다. 삭제 하시겠습니까?
+MainFrame.DELETE_CARDS_WARN_TITLE = 카드 삭제
+MainFrame.DELETE_CATEGORY_WARN  = 카테고리 {0} 를 제거하면 {1}개의 카드를 삭제하게 됩니다. 삭제 하시겠습니까?
+
+MainFrame.EDIT_CARD             = 카드 편집
+MainFrame.EDIT_CARD_DESC        = 카드 정보를 편집합니다. 
+
+MainFrame.ERROR_TITLE           = 오류
+MainFrame.ERROR_LOAD            = 파일을 읽는데 문제가 생겼습니다: {0}
+MainFrame.ERROR_SAVE            = 파일을 저장하는데 문제가 생겼습니다: {0}. 레슨은 아직 저장되지 않았습니다. 
+
+MainFrame.EXIT                  = 끝내기
+MainFrame.EXIT_DESC             = 프로그램 끝내기
+
+MainFrame.FILE_FILTER_DESC      = jMemorize 레슨
+MainFrame.PDF_FILE_FILTER_DESC	= PDF - Portable Document Format (.pdf)
+
+MainFrame.FIND                  = 찾기
+MainFrame.FIND_DESC             = 카드 찾기
+
+MainFrame.LEARN                 = 외우기
+MainFrame.LEARN_DESC            = 외우지 못한 모든 카드와 만기된 카드를 가지고 스터디 세션을 시작합니다. 
+
+MainFrame.MENU_FILE             = 파일
+MainFrame.MENU_EDIT             = 편집
+MainFrame.MENU_HELP             = 도움말
+MainFrame.MENU_LESSON           = 레슨
+
+MainFrame.NEW                   = 새로 만들기
+MainFrame.NEW_DESC              = 빈 레슨을 만듭니다. 
+
+MainFrame.UNNAMED_LESSON        = 새 레슨
+
+MainFrame.OPEN                  = 열기
+MainFrame.OPEN_DESC             = 레슨 파일을 엽니다. 
+
+MainFrame.REMOVE_CATEGORY_TITLE = 카테고리 삭제
+MainFrame.REMOVE_DESC           = 지금 선택된 항목을 삭제합니다.
+
+MainFrame.RESET                 = 카드 리셋
+MainFrame.RESET_DESC            = 카드 통계를 리셋합니다.
+MainFrame.RESET_WARN            = {0} 카드를 리셋하려고 합니다. 리셋 하시겠습니까?
+
+MainFrame.SAVE                  = 저장
+MainFrame.SAVE_DESC             = 레슨 저장
+MainFrame.SAVE_AS               = 다른 이름으로 저장..
+MainFrame.SAVE_AS_DESC          = 다른 이름으로 레슨 저장...
+MainFrame.SAVE_MODIFIED         = 레슨이 수정되었습니다. 끝내기전에 저장하시겠습니까?
+
+MainFrame.IMPORT                = 가져오기
+
+MainFrame.EXPORT                = 내보내기
+MainFrame.EXPORT_PDF            = Portable Document Format (*.pdf)
+MainFrame.EXPORT_RTF            = Rich Text Format (*.rtf)
+MainFrame.EXPORT_PDF_DESC       = *.pdf로 내보내기
+MainFrame.EXPORT_RTF_DESC       = *.rtf로 내보내기
+MainFrame.EXPORT_CLEAN          = 개인 학습정보없이 레습 내보내기
+
+MainFrame.PREFERENCES           = 환경 설정
+MainFrame.PREFERENCES_DESC      = 환경 설정하기
+
+MainFrame.CONFIRM_OVERWRITE_TITLE = 파일을 덮어쓸까요?
+MainFrame.CONFIRM_OVERWRITE = 파일이 이미 있습니다. 덮어쓸까요?
+
+MainFrame.SELECT_CHARACTER_SET  = 파일의 문자 세트를 선택하세요.
+MainFrame.CHARACTER_SET         = 문자 세트
+
+MainFrame.RENAME                = 이름 바꾸기
+MainFrame.RENAME_INPUT          = 새로운 이름을 입력하세요.
+
+# files
+
+File.CSV                     = Comma Separated Values (*.csv)
+File.TSV                     = Tabular Separated Values (*.tsv)
+
+# web sites
+
+URL.HOMEPAGE                 = 홈페이지
+URL.MANUAL                   = 사용자 메뉴얼
+URL.FEATURE_TRACKER          = 기능 트랙커
+URL.BUG_TRACKER              = 버그 트랙커
+
+# preferences
+
+Preferences.USE_GZIP            = GZIP 포맷으로 레슨 파일 압축
+Preferences.LANGUAGE            = 언어
+Preferences.RESTART             = 새로 선택하신 언어는 다음 프로그램 제시작시 적용됩니다. 
+
+Preferences.FONT_SETTINGS       = 글꼴 설정
+Preferences.FONT                = 글꼴
+Preferences.SIZE                = 크기
+Preferences.PREVIEW             = 미리보기
+
+Preferences.ALIGNMENT           = 맞춤 
+Preferences.ALIGN_LEFT          = 왼쪽
+Preferences.ALIGN_CENTER        = 가운데
+Preferences.ALIGN_RIGHT         = 오른쪽
+Preferences.VERT_ALIGN          = 수직 중앙
+
+# card table
+
+CardTable.COLUMNS               = 열
+CardTable.NO_DATE_DESC          = 이 카드는 테스트된적이 전혀 없습니다. 
+CardTable.NOT_LEARNED           = 암기 못한 카드
+CardTable.PATH                  = 경로
+CardTable.SELECTED_CARDS        = 선택된 카드
+
+# deck chart
+
+DeckChart.CARDS              = 카드
+DeckChart.START_DECK         = 시작 덱
+DeckChart.SUMMARY            = 요약
+DeckChart.EXPIRED_CARDS      = 만기된 카드
+DeckChart.LEARNED_CARDS      = 암기한 카드
+DeckChart.UNLEARNED_CARDS    = 암기 못한 카드
+
+Summary.LEARNED              = 암기한 확률
+Summary.FAILED               = 암기 못한 확률
+Summary.RELEARNED            = 새로 암기한 확률
+Summary.SKIPPED              = 그냥 건너뛴 확률
+
+# session chart
+
+SessionChart.THIS_SESSION    = 이번 세션
+SessionChart.AVERAGE_SESSION = 평균 세션
+
+# deck table
+
+DeckTable.NEXT_DECK          = 다음 덱
+DeckTable.NEXT_DECK_DESC     = 다음 덱을 보여줍니다.
+DeckTable.PREV_DECK          = 이전 덱
+DeckTable.PREV_DECK_DESC     = 이전의 덱을 보여줍니다.
+
+# card editting
+
+EditCard.DETAILS_RATIO       = 성공율
+EditCard.DETAILS_HISTORY     = 학습 기록
+
+EditCard.MODIFIED_WARN       = 카드가 수정되었습니다. 계속 진행하기전에 적용하시겠습니까?
+EditCard.MODIFIED_WARN_TITLE = 카드 수정
+
+EditCard.NEXT_CARD         = 다음 카드
+EditCard.NEXT_CARD_DESC    = 다음 카드를 보여줍니다. 
+
+EditCard.PREV_CARD         = 이전 카드
+EditCard.PREV_CARD_DESC    = 이전 카드를 보여줍니다. 
+
+EditCard.REMOVE_CARD       = 카드 제거
+EditCard.REMOVE_CARD_DESC  = 현재 카드를 제거합니다. 
+
+EditCard.REMOVE_CARD_WARN  = 이 카드를 삭제하기를 원하십니까?
+EditCard.REMOVE_CARD_WARN_TITLE = 카드 제거
+
+EditCard.RESET_CARD        = 카드 리셋
+EditCard.RESET_CARD_DESC   = 현재 카드를 리셋합니다. 
+EditCard.RESET_CARD_WARN   = 이 카드를 리셋하면 첫 덱으로 이동하게 됩니다. \n이동하시겠습니까?
+
+EditCard.TAB_SIDES         = 카드면
+EditCard.TAB_PROPERTIES    = 속성
+
+# find tool
+
+FindTool.FIND          = 찾기
+FindTool.BOTH_SIDES    = 양면
+FindTool.MATCH_CASE    = 대/소문자 구분
+FindTool.RESULTS       = 결과
+FindTool.SEARCH_TEXT   = 텍스트 찾기
+FindTool.SETTINGS      = 설정
+
+# learn
+
+
+Learn.REMEMBER_THE_ANSWER    = 답을 외우도록 하세요
+Learn.DID_YOU_KNOW_ANSWER    = 정답을 아시고 계셨나요?
+Learn.YES                    = 예
+Learn.NO                     = 아니오
+
+Learn.CARD_COUNTER           = 카드 카운터
+Learn.FLIPPED_CARD_SIDES     = 카드 뒷면
+Learn.SHOW_ANSWER            = 정답 보기
+Learn.SHOW_CATEGORY          = 카테고리 보기
+Learn.SKIP_CARD              = 카드 건너뛰기
+Learn.STOP                   = 학습 중지
+Learn.TIMER                  = 타이머
+
+Learn.SESSION_RESULTS        = 세션 결과
+Learn.CARD_PROGRESS          = 카드 과정
+Learn.SESSION_PROGRESS       = 세션 과정
+
+# learn settings
+
+LearnSettings.ADVANCED          = 고급
+LearnSettings.SCHEDULING        = 스케줄
+
+LearnSettings.CARDS_TO_LEARN    = 학습할 카드 
+LearnSettings.LEARN_UNLEARNED_EXPIRED = 외우지 못한 모든 카드와 만기된 카드 학습하기
+LearnSettings.LEARN_UNLEARNED   = 외우지 못한 카드만 학습하기
+LearnSettings.LEARN_EXPIRED     = 만기된 카드만 학습하기
+LearnSettings.LEARN_SELECTED    = 선택한 카드만 학습하기
+
+LearnSettings.CARDS_ORDER       = 카드 순서
+LearnSettings.SHUFFLE_CARDS     = 모든 덱과 카테고리에 있는 카드 섞기
+LearnSettings.SHUFFLE_RATIO     = 덱 레벨에 의해 정렬되지 않아도 되는 카드 확률
+LearnSettings.GROUP_CARDS       = 외우는 동안 카테고리로 카드 그룹짓기
+LearnSettings.NATURAL_CATEGORY_ORDER = 순차적인 순서로 카테고리 보여주기
+LearnSettings.RANDOM_CATEGORY_ORDER = 무작위로 카테고리 보여주기
+
+LearnSettings.DELIMITERS          = Delimiters
+LearnSettings.CARD_LIMIT          = 카드 제한
+LearnSettings.CARD_LIMIT_TEXT     = 이 세션에 테스트할 수 있는 카드 수 제한하기
+LearnSettings.TIME_LIMIT          = 시간 제한(분) 
+LearnSettings.TIME_LIMIT_TEXT     = 정해진 시간이 초과되면 세션 끝내기
+LearnSettings.DONT_RETEST_FAILED  = 이번 세션에 실패한 카드는 다시 외우지 않기
+
+LearnSettings.SCHEDULE_PRESETS    = 스케줄 공식 지정
+LearnSettings.DELAY_AFTER_LEVEL   =  {0} 레벨이후 지연
+LearnSettings.DAYS                = 일
+LearnSettings.HOURS               = 시
+LearnSettings.MINUTES             = 분
+LearnSettings.FIXED_EXPIRATION_TIME = 정해진 만기시간으로 사용하기
+
+LearnSettings.SIDE_MODE           = 카드면에 대한 학습방식
+LearnSettings.NORMAL_MODE         = 일반 모드로 학습하기
+LearnSettings.FLIP_MODE           = 뒷면으로 학습하기
+LearnSettings.RANDOM_MODE         = 무작위 모드로 카드면을 바꿔 학습하기
+LearnSettings.BOTH_MODE           = 지정된만큼 자주 각 면을 바꿔가며 학습하기
+
+LearnSettings.START         = 세션 시작\!
+LearnSettings.TITLE         = 학습 세팅
+
+# new card
+
+NewCard.ADD                 = 추가
+NewCard.ADD_AND_NEXT        = 추가하고 다음 카드 생성
+
+NewCard.EDIT_RECENTLY       = 최근 편집
+NewCard.EDIT_RECENTLY_DESC  = 최근에 추가된 카드 편집하기
+
+NewCard.NEW_WINDOW          = 새 창
+NewCard.NEW_WINDOW_DESC     = 새로운 카드 추가 창 열기
+
+NewCard.TITLE               = 카드 만들기
+
+NewCard.CLOSE_WARN          = 경고
+NewCardManager.DISMISSED_WARN = 카드 정보가 제거되게 됩니다. \n현재 창이 닫히기전에 카드를 만들기를 원하십니까?
+
+# status bar
+
+StatusBar.CARDS             = 카드
+StatusBar.EXPIRED           = 만기된
+StatusBar.LEARNED           = 암기한
+StatusBar.UNLEARNED         = 암기 못한
+StatusBar.PARTIAL           = 부분적으로 암기한
+
+StatusBar.LEARNING_CATEGORY = 학습 카테고리
+StatusBar.CARDS_LEFT        = 남은 카드
+
+# strategy
+
+Strategy.LINEAR_DEFAULT_SCHEDULE  = 선형 (기본)
+Strategy.CONSTANT_SCHEDULE        = 지속
+Strategy.EXPONENTIAL_SCHEDULE     = 지수형 
+Strategy.QUADRATIC_SCHEDULE       = 정방형
+Strategy.CRAM_SCHEDULE            = 주입식
+Strategy.CUSTOM_SCHEDULE          = 맞춤형
+
+# time related
+
+Time.DAYS               = 일
+Time.ONE_DAY            = 하루
+Time.HOURS              = 시간
+Time.ONE_HOUR           = 한 시간
+Time.MINUTES            = 분
+Time.ONE_MINUTE         = 일 분
+Time.SECONDS            = 초
+
+Time.PASSED             = 통과
+
+Time.IN                 = {0} 안에
+Time.AGO                = {0} 전에
+
+# learn history
+
+History.TITLE = 학습 기록
+History.ACTION = 학습 기록 보기
+History.RECENT = 최근 세션
+History.BY_DATE = 날짜별 세션
+History.BY_WEEK = 주별 세션
+History.BY_MONTH = 월별 세션
+History.BY_YEAR = 년별 세션
+History.SESSION_DURATION = 세션 시간
