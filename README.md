@@ -8,6 +8,7 @@ as it was (raise an issue if it is not).
 
 I did the following:
 - split the code into a model, swing and I/O modules
+- added maven for building (start JMemorizeParent)
 - added a lot of unit tests (not enough, yet)
 
 I have more plans than time:
