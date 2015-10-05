@@ -25,6 +25,7 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import jmemorize.util.NaturalOrderComparator;
 
@@ -260,13 +261,11 @@ public class Category implements Events
         List<Card> cardList = new ArrayList<Card>(m_decks.get(level));
         
         //get cards in child categories
-        for (Category child : getChildCategories())
-        {
-            if (child.getNumberOfDecks() > level)
-            {
-                cardList.addAll(child.getCards(level));
-            }
-        }
+        cardList.addAll( getChildCategories().stream()
+        		.filter(child -> (child.getNumberOfDecks() > level))
+        		.map(child -> child.getCards(level))
+        		.flatMap(l -> l.stream())
+        		.collect(Collectors.toList()));
         
         return cardList;
     }
