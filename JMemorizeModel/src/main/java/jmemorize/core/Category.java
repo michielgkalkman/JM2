@@ -263,8 +263,7 @@ public class Category implements Events
         //get cards in child categories
         cardList.addAll( getChildCategories().stream()
         		.filter(child -> (child.getNumberOfDecks() > level))
-        		.map(child -> child.getCards(level))
-        		.flatMap(l -> l.stream())
+        		.flatMap(c -> c.getCards(level).stream())
         		.collect(Collectors.toList()));
         
         return cardList;
