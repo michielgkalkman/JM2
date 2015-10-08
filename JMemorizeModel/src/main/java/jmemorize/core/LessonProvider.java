@@ -18,11 +18,6 @@
  */
 package jmemorize.core;
 
-import java.io.File;
-import java.io.IOException;
-
-import jmemorize.util.RecentItems;
-
 /**
  * A lesson provider is responsible for handling loading and saving of lessons.
  * You should always the methods of this class to load and save lessons, instead
