@@ -232,4 +232,55 @@ public class DefaultLearnSessionTest {
 		}
 	}
 
+	@Test
+	public void testRaiseCardLevel() {
+
+		final Lesson lesson = new Lesson(true);
+
+		final Category category = lesson.getRootCategory();
+
+		final Card card = new Card("0", "0");
+		category.addCard(card);
+
+		final LearnSettings settings = new LearnSettings();
+
+		final List<Card> selectedCards = new ArrayList<>();
+		selectedCards.add(card);
+
+		final boolean learnUnlearned = true;
+		final boolean learnExpired = true;
+		final LearnLessonsSessionProvider learnLessonsSessionProvider = new DefaultLearnSessionProviderImpl();
+
+		final MockLessonObserver observer = new MockLessonObserver();
+		learnLessonsSessionProvider.addLessonObserver(observer);
+
+		learnLessonsSessionProvider.setLesson(lesson);
+
+		final TestLearnSessionObserver observer2 = new TestLearnSessionObserver();
+
+		learnLessonsSessionProvider.addLearnSessionObserver(observer2);
+
+		learnLessonsSessionProvider.startLearnSession(settings, selectedCards, category, learnUnlearned, learnExpired);
+
+		final LearnSession session = observer2.getSession();
+		assertNotNull(session);
+
+		assertEquals(1, session.getCardsLeft().size());
+		assertEquals(0, session.getSkippedCards().size());
+		assertEquals(1, session.getCheckedCards().size());
+		assertNotNull(session.getCurrentCard());
+
+		session.cardChecked(true, true);
+
+		assertEquals(0, session.getCardsLeft().size());
+		assertEquals(0, session.getSkippedCards().size());
+		assertEquals(1, session.getCheckedCards().size());
+		assertNotNull(session.getCurrentCard());
+		
+		
+//		
+//		
+//		check dateTested, etc..card.clone().
+	}
+
 }

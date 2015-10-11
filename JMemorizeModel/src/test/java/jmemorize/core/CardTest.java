@@ -89,13 +89,13 @@ public class CardTest {
 
 		{
 			final Date now2 = new DateTime().toDate();
-			card.setDateTested(now2);
+			Card newCard = card.setDateTested(now2);
 
-			final Date dateTested = card.getDateTested();
+			final Date dateTested = newCard.getDateTested();
 			assertEquals(now2, dateTested);
 			assertTrue(now2 != dateTested);
 
-			final Date dateTouched = card.getDateTouched();
+			final Date dateTouched = newCard.getDateTouched();
 			assertEquals(now2, dateTouched);
 			assertTrue(now2 != dateTouched);
 		}

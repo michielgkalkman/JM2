@@ -24,20 +24,21 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.List;
 
+import com.itextpdf.text.Chunk;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Font.FontFamily;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.lowagie.text.rtf.RtfWriter2;
+
 import jmemorize.core.Card;
 import jmemorize.core.Category;
 import jmemorize.core.Lesson;
-
-import com.lowagie.text.Chunk;
-import com.lowagie.text.Document;
-import com.lowagie.text.DocumentException;
-import com.lowagie.text.Font;
-import com.lowagie.text.HeaderFooter;
-import com.lowagie.text.Paragraph;
-import com.lowagie.text.Phrase;
-import com.lowagie.text.Table;
-import com.lowagie.text.pdf.PdfWriter;
-import com.lowagie.text.rtf.RtfWriter2;
 
 /**
  * @author jan stamer
@@ -45,7 +46,7 @@ import com.lowagie.text.rtf.RtfWriter2;
  */
 public class PdfRtfBuilder {
 	public enum Mode {
-		PDF_MODE, RTF_MODE
+		PDF_MODE
 	}
 
 	// These get set in export() prior to building the pdf/rtf
@@ -66,17 +67,8 @@ public class PdfRtfBuilder {
 			final Document doc = new Document();
 			final OutputStream out = new FileOutputStream(file);
 
-			switch (mode) {
-			case PDF_MODE:
 				PdfWriter.getInstance(doc, out);
-				break;
 
-			case RTF_MODE:
-				RtfWriter2.getInstance(doc, out);
-				break;
-			}
-
-			doc.setHeader(new HeaderFooter(new Phrase(file.getName()), false));
 			doc.open();
 
 			// add cards in subtrees
@@ -119,7 +111,7 @@ public class PdfRtfBuilder {
 	private static void writeCategoryHeader(final Document doc,
 			final Category category) throws DocumentException {
 		final Chunk chunk = new Chunk(category.getPath());
-		chunk.setFont(new Font(Font.HELVETICA, 12, Font.BOLD));
+		chunk.setFont(new Font(FontFamily.HELVETICA, 12f, Font.BOLD));
 
 		final Paragraph paragraph = new Paragraph(chunk);
 		paragraph.setSpacingBefore(1f);
@@ -137,12 +129,12 @@ public class PdfRtfBuilder {
 	 */
 	private void writeCard(final Document doc, final Card card)
 			throws DocumentException {
-		final Table table = new Table(2);
+		final PdfPTable table = new PdfPTable(2);
 
-		table.setPadding(3f);
-		table.setBorderWidth(1.0f);
-		table.setTableFitsPage(true);
-		table.complete();
+		table.setPaddingTop(3f);
+//		table.setBorderWidth(1.0f);
+//		table.setTableFitsPage(true);
+//		table.complete();
 
 		final Phrase front = new Phrase(card.getFrontSide().getText()
 				.getUnformatted(), frontFont);

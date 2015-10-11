@@ -83,11 +83,42 @@ public class Card implements Events, Cloneable {
 		m_dateCreated = cloneDate(created);
 		m_dateModified = cloneDate(created);
 		m_dateTouched = cloneDate(created);
+		m_dateTested = null;
 
 		m_frontSide = frontSide;
 		m_backSide = backSide;
 
 		attachCardSideObservers();
+	}
+	
+	private Card(Category m_category, int m_level, CardSide m_frontSide, CardSide m_backSide, Date m_dateTested,
+			Date m_dateExpired, Date m_dateCreated, Date m_dateModified, Date m_dateTouched, int m_testsTotal,
+			int m_testsHit, int m_frontHitsCorrect, int m_backHitsCorrect, int m_skipped) {
+		super();
+		this.m_category = m_category;
+		this.m_level = m_level;
+		this.m_frontSide = m_frontSide;
+		this.m_backSide = m_backSide;
+		this.m_dateTested = m_dateTested;
+		this.m_dateExpired = m_dateExpired;
+		this.m_dateCreated = m_dateCreated;
+		this.m_dateModified = m_dateModified;
+		this.m_dateTouched = m_dateTouched;
+		this.m_testsTotal = m_testsTotal;
+		this.m_testsHit = m_testsHit;
+		this.m_frontHitsCorrect = m_frontHitsCorrect;
+		this.m_backHitsCorrect = m_backHitsCorrect;
+		this.m_skipped = m_skipped;
+	}
+	
+	private Card createCard() {
+		return new Card( m_category, m_level, m_frontSide, m_backSide, m_dateTested, m_dateExpired, m_dateCreated,
+				m_dateModified, m_dateTouched, m_testsTotal, m_testsHit, m_frontHitsCorrect, m_backHitsCorrect, m_skipped);
+	}
+	
+	private Card createCard( final Date m_dateTested, final Date m_dateTouched) {
+		return new Card( m_category, m_level, m_frontSide, m_backSide, m_dateTested, m_dateExpired, m_dateCreated,
+				m_dateModified, m_dateTouched, m_testsTotal, m_testsHit, m_frontHitsCorrect, m_backHitsCorrect, m_skipped);
 	}
 
 	/*
@@ -240,9 +271,13 @@ public class Card implements Events, Cloneable {
 		return cloneDate(m_dateTested);
 	}
 
-	public void setDateTested(final Date date) {
+	public Card setDateTested(final Date date) {
+//		return createCard(date, date);
+
 		m_dateTested = cloneDate(date);
 		m_dateTouched = cloneDate(date);
+		
+		return this;
 	}
 
 	/**
@@ -415,24 +450,7 @@ public class Card implements Events, Cloneable {
 	 */
 	@Override
 	public Object clone() {
-		Card card = null;
-		try {
-			card = (Card) super.clone();
-			card.m_frontSide = (CardSide) m_frontSide.clone();
-			card.m_backSide = (CardSide) m_backSide.clone();
-
-			card.m_dateCreated = cloneDate(m_dateCreated);
-			card.m_dateExpired = cloneDate(m_dateExpired);
-			card.m_dateModified = cloneDate(m_dateModified);
-			card.m_dateTested = cloneDate(m_dateTested);
-			card.m_dateTouched = cloneDate(m_dateTouched);
-
-			card.m_category = null; // don't clone category
-		} catch (final CloneNotSupportedException e) {
-			assert false;
-		}
-
-		return card;
+		return createCard();
 	}
 
 	/**

@@ -42,7 +42,6 @@ import jmemorize.gui.swing.actions.edit.ResetCardAction;
 import jmemorize.gui.swing.actions.file.ExitAction;
 import jmemorize.gui.swing.actions.file.ExportToCleanLessonAction;
 import jmemorize.gui.swing.actions.file.ExportToPDFAction;
-import jmemorize.gui.swing.actions.file.ExportToRTFAction;
 import jmemorize.gui.swing.actions.file.ImportJMLAction;
 import jmemorize.gui.swing.actions.file.JMemorizeUI;
 import jmemorize.gui.swing.actions.file.NewLessonAction;
@@ -171,7 +170,6 @@ public class MainMenu extends JMenuBar implements RecentItemsObserver
         exportMenu.setIcon(new ImageIcon(
             getClass().getResource("/resource/icons/blank.gif"))); //$NON-NLS-1$
         exportMenu.add(new ExportToPDFAction());
-        exportMenu.add(new ExportToRTFAction());
         exportMenu.add(new ExportToCleanLessonAction( jMemorizeIO));
         
         m_fileMenu.addSeparator();

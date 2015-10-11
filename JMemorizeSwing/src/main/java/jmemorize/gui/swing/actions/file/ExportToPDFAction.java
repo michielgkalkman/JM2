@@ -21,6 +21,10 @@ package jmemorize.gui.swing.actions.file;
 import java.io.File;
 import java.io.IOException;
 
+import com.itextpdf.text.Font;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.pdf.BaseFont;
+
 import jmemorize.core.Lesson;
 import jmemorize.core.Localization;
 import jmemorize.core.Model;
@@ -29,10 +33,6 @@ import jmemorize.core.io.PdfRtfBuilder.Mode;
 import jmemorize.gui.swing.CardFont.FontType;
 import jmemorize.gui.swing.Settings;
 import jmemorize.util.ExtensionFileFilter;
-
-import com.lowagie.text.Font;
-import com.lowagie.text.FontFactory;
-import com.lowagie.text.pdf.BaseFont;
 
 /**
  * An action that exports the current lesson to PDF.
