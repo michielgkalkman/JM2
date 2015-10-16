@@ -265,17 +265,30 @@ public class DefaultLearnSessionTest {
 		final LearnSession session = observer2.getSession();
 		assertNotNull(session);
 
+		{
+			final Card currentCard = session.getCurrentCard();
+			assertNotNull(currentCard);
+		}
+		
 		assertEquals(1, session.getCardsLeft().size());
 		assertEquals(0, session.getSkippedCards().size());
 		assertEquals(1, session.getCheckedCards().size());
-		assertNotNull(session.getCurrentCard());
-
+		assertEquals(0, session.getFailedCards().size());
+		assertEquals(0, session.getPassedCards().size());
+		assertEquals(0, session.getRelearnedCards().size());
+		
 		session.cardChecked(true, true);
 
+		{
+			final Card currentCard = session.getCurrentCard();
+			assertNotNull(currentCard);
+		}
 		assertEquals(0, session.getCardsLeft().size());
 		assertEquals(0, session.getSkippedCards().size());
 		assertEquals(1, session.getCheckedCards().size());
-		assertNotNull(session.getCurrentCard());
+		assertEquals(0, session.getFailedCards().size());
+		assertEquals(1, session.getPassedCards().size());
+		assertEquals(0, session.getRelearnedCards().size());
 		
 		
 //		
