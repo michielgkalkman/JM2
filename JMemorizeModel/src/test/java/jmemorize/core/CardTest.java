@@ -23,11 +23,17 @@ public class CardTest {
 		firstCard.setSides("1", "1");
 		assertEquals("(1/1)", firstCard.toString());
 
-		firstCard.setLearnedAmount(true, 1);
+		final Card firstCardCopy1 = firstCard.setLearnedAmount(true, 1);
 		assertEquals(1, firstCard.getLearnedAmount(true));
+		assertEquals(1, firstCardCopy1.getLearnedAmount(true));
+		assertEquals(0, firstCard.getLearnedAmount(false));
+		assertEquals(0, firstCardCopy1.getLearnedAmount(false));
 
-		firstCard.setLearnedAmount(false, 2);
+		final Card firstCardCopy2 = firstCard.setLearnedAmount(false, 2);
+		assertEquals(1, firstCard.getLearnedAmount(true));
+		assertEquals(1, firstCardCopy1.getLearnedAmount(true));
 		assertEquals(2, firstCard.getLearnedAmount(false));
+		assertEquals(2, firstCardCopy2.getLearnedAmount(false));
 	}
 
 	@Test

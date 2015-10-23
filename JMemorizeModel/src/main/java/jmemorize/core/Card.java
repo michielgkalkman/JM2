@@ -121,6 +121,11 @@ public class Card implements Events, Cloneable {
 				m_dateModified, m_dateTouched, m_testsTotal, m_testsHit, m_frontHitsCorrect, m_backHitsCorrect, m_skipped);
 	}
 
+	private Card createCard( final int m_frontHitsCorrect, final int m_backHitsCorrect) {
+		return new Card( m_category, m_level, m_frontSide, m_backSide, m_dateTested, m_dateExpired, m_dateCreated,
+				m_dateModified, m_dateTouched, m_testsTotal, m_testsHit, m_frontHitsCorrect, m_backHitsCorrect, m_skipped);
+	}
+	
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -216,19 +221,25 @@ public class Card implements Events, Cloneable {
 	 * @param amount
 	 *            the amount of times that the specified side was learned in
 	 *            this deck.
+	 * @return 
 	 */
-	public void setLearnedAmount(final boolean frontside, final int amount) {
+	public Card setLearnedAmount(final boolean frontside, final int amount) {
 		// TODO move to CardSide class
-
+		final Card card;
+		
 		if (frontside) {
 			m_frontHitsCorrect = amount;
+			card = createCard( amount, m_backHitsCorrect);
 		} else {
 			m_backHitsCorrect = amount;
+			card = createCard( m_frontHitsCorrect, amount);
 		}
 
 		if (m_category != null) {
 			m_category.fireCardEvent(DECK_EVENT, this, getCategory(), m_level);
 		}
+		
+		return card;
 	}
 
 	/**
