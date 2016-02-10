@@ -12,12 +12,14 @@ public interface JMemorizeIO {
 
 	public void exportLesson(Lesson cleanLesson, File file);
 
-	public void saveLesson(Lesson lesson);
+	public void saveLesson(Lesson lesson) throws IOException;
 
 	public void loadFromXMLFile(File file, Lesson lesson);
 
-	public void loadLesson(Object object);
-
 	public void loadRecentLesson(int m_id);
+
+	public File getFile();
+
+	public void loadLesson(Lesson lesson) throws IOException;
 	
 }

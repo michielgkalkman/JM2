@@ -166,7 +166,7 @@ public class DeckChartPanel extends JPanel implements CategoryObserver {
 				final Rectangle2D dataArea, final CategoryPlot plot,
 				final CategoryAxis domainAxis, final ValueAxis rangeAxis,
 				final CategoryDataset dataset) {
-			final List<Object[]> prunedValues = new ArrayList<>(values);
+			final List<Object[]> prunedValues = (List<Object[]>) new ArrayList<>(values);
 			double lastValue = 0.0;
 
 			final Iterator<Object[]> it = prunedValues.iterator();

@@ -8,9 +8,14 @@ import java.nio.channels.FileChannel;
 
 import jmemorize.core.Lesson;
 import jmemorize.core.media.MediaRepository;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class JmlIO implements JMemorizeIO {
 
+	// TODO: needs to be more abstract - could also be db or some other storage
+	public File file;
+	
 	@Override
 	public void load(final File file, final Lesson lesson) throws IOException {
 		try {
@@ -18,12 +23,14 @@ public class JmlIO implements JMemorizeIO {
 
 //			final Lesson lesson = new Lesson(false);
 			XmlBuilder.loadFromXMLFile(file, lesson);
-			lesson.setFile(file);
 			lesson.setCanSave(false);
 //			m_recentFiles.push(file.getAbsolutePath());
 
 //			setLesson(lesson);
 			// startExpirationTimer(); TODO expiration timer
+			
+			this.file = file;
+			
 		} catch (final Exception e) {
 //			m_recentFiles.remove(file.getAbsolutePath());
 //			logThrowable("Error loading lesson", e);
@@ -41,13 +48,14 @@ public class JmlIO implements JMemorizeIO {
 			file.delete();
 			copyFile(tempFile, file);
 
-			lesson.setFile(file); // note: sets file only if no exception
 			lesson.setCanSave(false);
 //			m_recentFiles.push(file.getAbsolutePath());
 
 //			for (final LessonObserver observer : m_lessonObservers) {
 //				observer.lessonSaved(lesson);
 //			}
+			
+			this.file = file;
 		} catch (final Throwable t) {
 			throw new IOException(t.getMessage());
 		}
@@ -79,9 +87,8 @@ public class JmlIO implements JMemorizeIO {
 	}
 
 	@Override
-	public void saveLesson(Lesson lesson) {
-		// TODO Auto-generated method stub
-		
+	public void saveLesson(Lesson lesson) throws IOException {		
+		save( file, lesson);
 	}
 
 	@Override
@@ -91,14 +98,18 @@ public class JmlIO implements JMemorizeIO {
 	}
 
 	@Override
-	public void loadLesson(Object object) {
-		// TODO Auto-generated method stub
-		
+	public void loadLesson(Lesson lesson) throws IOException {
+		load(file, lesson);
 	}
 
 	@Override
 	public void loadRecentLesson(int m_id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public File getFile() {
+		return file;
 	}
 }

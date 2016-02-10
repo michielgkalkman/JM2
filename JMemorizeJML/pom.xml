@@ -18,6 +18,14 @@
 			<groupId>org.taHjaj.wo</groupId>
 			<artifactId>JMemorizeIO</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+		</dependency>
 	</dependencies>
 	<build>
 		<pluginManagement>

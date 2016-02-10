@@ -36,14 +36,8 @@ public class LessonTest {
 		
 		assertFalse(lesson.canSave());
 
-		assertNull(lesson.getFile());
-
 		final File file = new File( SystemUtils.getJavaIoTmpDir(), "x");
-		lesson.setFile(file);
-		
-		assertEquals(file, lesson.getFile());
-		
-		
+				
 		{
 			final Lesson clone = Lesson.cloneLesson(category1);
 
@@ -58,8 +52,6 @@ public class LessonTest {
 			assertNull(clone.getRootCategory().getChildCategory("category2"));
 
 			assertTrue(clone.canSave());
-			assertNull(clone.getFile());
-			
 		}
 		
 		{
@@ -88,7 +80,6 @@ public class LessonTest {
 			}
 
 			assertTrue(clone.canSave());
-			assertNull(clone.getFile());
 		}
 		
 		{
@@ -147,7 +138,5 @@ public class LessonTest {
 	public void otherLessonConstructorTest() {
 		final Category rootCatagory = new Category("someRootCategory");
 		final Lesson lesson = new Lesson(rootCatagory  , true);
-		
-		
 	}
 }

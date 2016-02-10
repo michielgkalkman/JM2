@@ -20,12 +20,19 @@ package jmemorize.gui.swing.actions.file;
 
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.text.MessageFormat;
 
+import jmemorize.core.LC;
+import jmemorize.core.Lesson;
+import jmemorize.core.LessonObserver;
 import jmemorize.core.Localization;
 import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
 import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
+import jmemorize.gui.swing.dialogs.ErrorDialog;
+import jmemorize.gui.swing.frames.MainFrame;
 
 /**
  * An action that opens up a file chooser and saves the lesson at that location.
@@ -34,7 +41,11 @@ import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
  */
 public class SaveLessonAsAction extends AbstractSessionDisabledAction
 {
-    private final JMemorizeIO jMemorizeIO;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8736393309136546337L;
+	private final JMemorizeIO jMemorizeIO;
 
 	public SaveLessonAsAction(JMemorizeIO jMemorizeIO)
     {
@@ -47,9 +58,33 @@ public class SaveLessonAsAction extends AbstractSessionDisabledAction
      */
     public void actionPerformed(java.awt.event.ActionEvent e)
     {
-        jMemorizeIO.saveLesson(Main.getInstance().getLesson());
+        Main main = Main.getInstance();
+
+        MainFrame frame = main.getFrame();
+
+        // TODO needs to be abstract - could as well be a db or some other storage
+        File file = AbstractExportAction.showSaveDialog(
+                frame, MainFrame.FILE_FILTER);
+        
+        try {
+	        if( file != null) {
+	    		Lesson lesson = main.getLesson();
+				jMemorizeIO.save(file, lesson);
+	    		
+				lesson.lessonSaved();
+	    		
+	    		// TODO updateFrameTitle(); triggered by save()
+	        }
+        } catch (Exception exception) {
+            Object[] args = {file != null ? file.getName() : "?"};
+            MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
+            String msg = form.format(args);
+            Main.logThrowable(msg, exception);
+           
+            new ErrorDialog(frame, msg, exception).setVisible(true);
+        }        
     }
-    
+ 
     private void setValues()
     {
         setName(Localization.get("MainFrame.SAVE_AS")); //$NON-NLS-1$

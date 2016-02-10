@@ -29,6 +29,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
+import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -52,6 +54,8 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.plaf.basic.BasicSplitPaneUI;
+
+import org.apache.commons.lang.StringUtils;
 
 import jmemorize.core.Card;
 import jmemorize.core.Category;
@@ -87,6 +91,7 @@ import jmemorize.gui.swing.actions.file.JMemorizeUI;
 import jmemorize.gui.swing.actions.file.NewLessonAction;
 import jmemorize.gui.swing.actions.file.OpenLessonAction;
 import jmemorize.gui.swing.actions.file.SaveLessonAction;
+import jmemorize.gui.swing.dialogs.ErrorDialog;
 import jmemorize.gui.swing.dialogs.OkayButtonDialog;
 import jmemorize.gui.swing.panels.DeckChartPanel;
 import jmemorize.gui.swing.panels.DeckTablePanel;
@@ -552,8 +557,17 @@ public class MainFrame extends JFrame implements CategoryObserver,
 					JOptionPane.WARNING_MESSAGE);
 
 			if (n == JOptionPane.OK_OPTION) {
-				jMemorizeIO.saveLesson(lesson);
-
+				try {
+					jMemorizeIO.saveLesson(lesson);
+		        } catch (Exception exception) {
+		        	File file = jMemorizeIO.getFile();
+		            Object[] args = {file != null ? file.getName() : "?"};
+		            MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
+		            String msg = form.format(args);
+		            Main.logThrowable(msg, exception);
+		           
+		            new ErrorDialog(this, msg, exception).setVisible(true);
+		        }
 				// if lesson was saved return true, false otherwise
 				return !lesson.canSave();
 			}
@@ -662,11 +676,11 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		final String version = Main.PROPERTIES.getProperty("project.version"); //$NON-NLS-1$
 		final String suffix = " - " + name + " " + version; //$NON-NLS-1$ //$NON-NLS-2$
 
-		final File file = m_main.getLesson().getFile();
-		if (file != null && !getTitle().equals(file.getName())) {
-			setTitle(file.getName() + suffix);
-		} else if (file == null) {
+		final String title = m_main.getLesson().getTitle();
+		if (StringUtils.isEmpty(title)) {
 			setTitle(Localization.get("MainFrame.UNNAMED_LESSON") + suffix); //$NON-NLS-1$
+		} else {
+			setTitle(title);
 		}
 	}
 

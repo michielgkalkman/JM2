@@ -18,7 +18,6 @@
  */
 package jmemorize.core;
 
-import java.io.File;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,10 +30,11 @@ import jmemorize.core.learn.LearnHistory;
 public class Lesson implements CategoryObserver {
 	/** True if this lesson has been modified since last save or load process */
 	private boolean m_canSave = false;
-	private File m_file;
 
 	private Category m_rootCategory;
 	private final LearnHistory m_learnHistory = new LearnHistory();
+
+	private String title;
 
 	public Lesson(final boolean canSave) {
 		this(new Category(Localization.get(LC.ROOT_CATEGORY)), canSave);
@@ -47,21 +47,6 @@ public class Lesson implements CategoryObserver {
 	public Lesson(final Category rootCategory, final boolean canSave) {
 		setRootCategory(rootCategory);
 		setCanSave(canSave);
-	}
-
-	/**
-	 * @return Returns the file.
-	 */
-	public File getFile() {
-		return m_file;
-	}
-
-	/**
-	 * @param file
-	 *            The file to set.
-	 */
-	public void setFile(final File file) {
-		m_file = file;
 	}
 
 	public LearnHistory getLearnHistory() {
@@ -142,7 +127,7 @@ public class Lesson implements CategoryObserver {
 	 */
 	@Override
 	public String toString() {
-		return "Lesson(" + getFile() + ")";
+		return "Lesson( )";
 	}
 
 	public void setCanSave(final boolean canSave) // TODO make private
@@ -247,5 +232,15 @@ public class Lesson implements CategoryObserver {
 		}
 		
 		return fAnyParentPresent;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void lessonSaved() {
+//		for (final LessonObserver observer : m_lessonObservers) {
+//			observer.lessonSaved(lesson);
+//		}
 	}
 }
