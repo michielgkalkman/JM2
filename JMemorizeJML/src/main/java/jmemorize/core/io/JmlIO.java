@@ -34,6 +34,8 @@ public class JmlIO implements JMemorizeIO {
 		} catch (final Exception e) {
 //			m_recentFiles.remove(file.getAbsolutePath());
 //			logThrowable("Error loading lesson", e);
+			
+			log.error(e.getMessage(), e);
 			throw new IOException(e.getMessage());
 		}
 	}

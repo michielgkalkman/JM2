@@ -20,12 +20,15 @@ package jmemorize.gui.swing.actions.file;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import jmemorize.core.Lesson;
 import jmemorize.core.Localization;
 import jmemorize.core.io.JMemorizeIO;
+import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
+import jmemorize.gui.swing.dialogs.ErrorDialog;
 import jmemorize.gui.swing.frames.MainFrame;
 
 /**
@@ -62,9 +65,12 @@ public class OpenLessonAction extends AbstractSessionDisabledAction
 			Lesson lesson = new Lesson(true);
 			jMemorizeIO.load(file, lesson);
 			jMemorizeUI.show(lesson);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+		} catch (IOException exception) {
+	        Main main = Main.getInstance();
+	        
+	        MainFrame frame = main.getFrame();
+	        
+            new ErrorDialog(frame, exception.getLocalizedMessage(), exception).setVisible(true);
 		}
     }
     

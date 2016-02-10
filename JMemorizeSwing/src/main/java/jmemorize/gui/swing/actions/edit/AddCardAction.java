@@ -33,7 +33,12 @@ import jmemorize.gui.swing.frames.MainFrame;
  */
 public class AddCardAction extends AbstractAction2
 {
-    private SelectionProvider m_selectionProvider;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -650275614440190752L;
+	
+	private SelectionProvider m_selectionProvider;
     
     public AddCardAction(SelectionProvider selectionProvider)
     {
