@@ -33,47 +33,42 @@ public class LessonTest {
 		assertTrue(lesson.canSave());
 
 		lesson.setCanSave(false);
-		
+
 		assertFalse(lesson.canSave());
 
-		final File file = new File( SystemUtils.getJavaIoTmpDir(), "x");
-				
+		final File file = new File(SystemUtils.getJavaIoTmpDir(), "x");
+
 		{
 			final Lesson clone = Lesson.cloneLesson(category1);
 
 			assertEquals(lesson.getRootCategory(), clone.getRootCategory());
 			assertEquals(0, clone.getRootCategory().getLocalCards().size());
-			final Category childCategory = clone.getRootCategory()
-					.getChildCategory("category1");
+			final Category childCategory = clone.getRootCategory().getChildCategory("category1");
 			assertNotNull(childCategory);
 			assertEquals(1, childCategory.getCardCount());
-			assertEquals("1", childCategory.getCards().get(0).getFrontSide()
-					.toString());
+			assertEquals("1", childCategory.getCards().get(0).getFrontSide().toString());
 			assertNull(clone.getRootCategory().getChildCategory("category2"));
 
 			assertTrue(clone.canSave());
 		}
-		
+
 		{
 			final Lesson clone = Lesson.cloneLesson(category1, category3);
 
 			assertEquals(lesson.getRootCategory(), clone.getRootCategory());
 			assertEquals(0, clone.getRootCategory().getLocalCards().size());
 			{
-				final Category childCategory = clone.getRootCategory()
-						.getChildCategory("category1");
+				final Category childCategory = clone.getRootCategory().getChildCategory("category1");
 				assertNotNull(childCategory);
 				assertEquals(1, childCategory.getLocalCards().size());
 			}
 			{
-				final Category childCategory = clone.getRootCategory()
-						.getChildCategory("category2");
+				final Category childCategory = clone.getRootCategory().getChildCategory("category2");
 				assertNotNull(childCategory);
 				assertEquals(0, childCategory.getLocalCards().size());
 			}
 			{
-				final Category childCategory = clone.getRootCategory()
-						.getChildCategory("category2")
+				final Category childCategory = clone.getRootCategory().getChildCategory("category2")
 						.getChildCategory("category3");
 				assertNotNull(childCategory);
 				assertEquals(1, childCategory.getLocalCards().size());
@@ -81,28 +76,27 @@ public class LessonTest {
 
 			assertTrue(clone.canSave());
 		}
-		
+
 		{
 			final Lesson clone = lesson.cloneWithoutProgress();
-			
+
 			final Category rootCategory2 = clone.getRootCategory();
 
-			assertCategoryWithoutProgress(rootCategory2);			
-			
+			assertCategoryWithoutProgress(rootCategory2);
+
 			assertTrue(clone.canSave());
 		}
 	}
-	
-	private void assertCategoryWithoutProgress(final Category category) {		
+
+	private void assertCategoryWithoutProgress(final Category category) {
 		category.getChildCategories().forEach(c -> assertCategoryWithoutProgress(c));
-		
+
 		category.getCards().forEach(c -> assertCardWithoutProgress(c));
 	}
 
 	private void assertCardWithoutProgress(final Card c) {
-		assertEquals( 0, c.getTestsTotal());
+		assertEquals(0, c.getTestsTotal());
 	}
-
 
 	@Test
 	public void equalsTest() {
@@ -124,19 +118,25 @@ public class LessonTest {
 		{
 			final Lesson clone = lesson.cloneWithoutProgress();
 
-			assertEquals( clone, lesson);
+			assertEquals(clone, lesson);
 		}
-		
-		{
-			final Lesson clone = Lesson.cloneLesson( rootCategory, category1, category2, category3);
 
-			assertEquals( clone, lesson);
+		{
+			final Lesson clone = Lesson.cloneLesson(rootCategory, category1, category2, category3);
+
+			assertEquals(clone, lesson);
 		}
 	}
-	
-		@Test
-	public void otherLessonConstructorTest() {
+
+	@Test
+	public void addCategoryTest() {
 		final Category rootCatagory = new Category("someRootCategory");
-		final Lesson lesson = new Lesson(rootCatagory  , true);
+		final Lesson lesson = new Lesson(rootCatagory, true);
+
+		final Category childCategory = new Category("someChildCategory");
+		rootCatagory.addCategoryChild(childCategory);
+
+		assertEquals(childCategory, lesson.getRootCategory().getChildCategories().get(0));
 	}
+
 }
