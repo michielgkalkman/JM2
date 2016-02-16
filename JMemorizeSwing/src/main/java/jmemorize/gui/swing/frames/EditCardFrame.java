@@ -549,7 +549,7 @@ public class EditCardFrame extends EscapableFrame implements CategoryObserver, S
 
 			final CategoryComboBox categoryComboBox = m_cardPanel.getCategoryComboBox();
 			final Category newCategory = categoryComboBox.getSelectedCategory();
-			if (newCategory != m_currentCard.getCategory()) {
+			if (!newCategory.equals(m_currentCard.getCategory())) {
 				Category.moveCard(m_currentCard, newCategory);
 			}
 
