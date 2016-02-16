@@ -534,35 +534,39 @@ public class EditCardFrame extends EscapableFrame implements CategoryObserver, S
 	}
 
 	private boolean saveCard() throws IOException {
-		if (m_cardPanel.isValidCard()) {
-			final FormattedText frontText = m_cardPanel.getFrontText();
-			final FormattedText backText = m_cardPanel.getBackText();
+		if (isChanged()) {
+			if (m_cardPanel.isValidCard()) {
+				final FormattedText frontText = m_cardPanel.getFrontText();
+				final FormattedText backText = m_cardPanel.getBackText();
 
-			final MediaRepository repo = MediaRepository.getInstance();
+				final MediaRepository repo = MediaRepository.getInstance();
 
-			final List<String> frontIDs = repo.addImages(m_cardPanel.getFrontImages());
-			final List<String> backIDs = repo.addImages(m_cardPanel.getBackImages());
+				final List<String> frontIDs = repo.addImages(m_cardPanel.getFrontImages());
+				final List<String> backIDs = repo.addImages(m_cardPanel.getBackImages());
 
-			m_currentCard.setSides(frontText, backText);
-			m_currentCard.getFrontSide().setMedia(frontIDs);
-			m_currentCard.getBackSide().setMedia(backIDs);
+				m_currentCard.setSides(frontText, backText);
+				m_currentCard.getFrontSide().setMedia(frontIDs);
+				m_currentCard.getBackSide().setMedia(backIDs);
 
-			final CategoryComboBox categoryComboBox = m_cardPanel.getCategoryComboBox();
-			final Category newCategory = categoryComboBox.getSelectedCategory();
-			if (!newCategory.equals(m_currentCard.getCategory())) {
-				Category.moveCard(m_currentCard, newCategory);
+				final CategoryComboBox categoryComboBox = m_cardPanel.getCategoryComboBox();
+				final Category newCategory = categoryComboBox.getSelectedCategory();
+				if (!newCategory.equals(m_currentCard.getCategory())) {
+					Category.moveCard(m_currentCard, newCategory);
+				}
+
+				updateTitle();
+				updateCardHeader();
+				updateApplyButton();
+
+				return true;
+			} else {
+				JOptionPane.showMessageDialog(this, Localization.get(LC.EMPTY_SIDES_ALERT),
+						Localization.get(LC.EMPTY_SIDES_ALERT_TITLE), JOptionPane.ERROR_MESSAGE);
+
+				return false;
 			}
-
-			updateTitle();
-			updateCardHeader();
-			updateApplyButton();
-
-			return true;
 		} else {
-			JOptionPane.showMessageDialog(this, Localization.get(LC.EMPTY_SIDES_ALERT),
-					Localization.get(LC.EMPTY_SIDES_ALERT_TITLE), JOptionPane.ERROR_MESSAGE);
-
-			return false;
+			return true;
 		}
 	}
 
