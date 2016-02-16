@@ -20,7 +20,6 @@ package jmemorize.gui.swing.actions.file;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import jmemorize.core.Lesson;
@@ -39,47 +38,48 @@ import jmemorize.gui.swing.frames.MainFrame;
  * 
  * @author djemili
  */
-public class OpenLessonAction extends AbstractSessionDisabledAction
-{
-    /**
+public class OpenLessonAction extends AbstractSessionDisabledAction {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 3333714808183547996L;
 	private final JMemorizeIO jMemorizeIO;
 	private final JMemorizeUI jMemorizeUI;
 
-	public OpenLessonAction( final JMemorizeIO jMemorizeIO, final JMemorizeUI jMemorizeUI)
-    {
-        this.jMemorizeIO = jMemorizeIO;
+	public OpenLessonAction(final JMemorizeIO jMemorizeIO, final JMemorizeUI jMemorizeUI) {
+		this.jMemorizeIO = jMemorizeIO;
 		this.jMemorizeUI = jMemorizeUI;
 		setValues();
-    }
+	}
 
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener
-     */
-    public void actionPerformed(java.awt.event.ActionEvent e)
-    {
-    	final File file = jMemorizeUI.determineLessonFile();
-    	try {
-			Lesson lesson = new Lesson(true);
-			jMemorizeIO.load(file, lesson);
-			jMemorizeUI.show(lesson);
-		} catch (IOException exception) {
-	        Main main = Main.getInstance();
-	        
-	        MainFrame frame = main.getFrame();
-	        
-            new ErrorDialog(frame, exception.getLocalizedMessage(), exception).setVisible(true);
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener
+	 */
+	@Override
+	public void actionPerformed(final java.awt.event.ActionEvent e) {
+		final File file = jMemorizeUI.determineLessonFile();
+		if (file != null) {
+			try {
+				final Lesson lesson = new Lesson(true);
+				jMemorizeIO.load(file, lesson);
+				jMemorizeUI.show(lesson);
+			} catch (final IOException exception) {
+				final Main main = Main.getInstance();
+
+				final MainFrame frame = main.getFrame();
+
+				new ErrorDialog(frame, exception.getLocalizedMessage(), exception).setVisible(true);
+			}
 		}
-    }
-    
-    private void setValues()
-    {
-        setName(Localization.get("MainFrame.OPEN")); //$NON-NLS-1$
-        setDescription(Localization.get("MainFrame.OPEN_DESC")); //$NON-NLS-1$
-        setIcon("/resource/icons/file_open.gif"); //$NON-NLS-1$
-        setAccelerator(KeyEvent.VK_O, SHORTCUT_KEY);
-        setMnemonic(1);
-    }
+	}
+
+	private void setValues() {
+		setName(Localization.get("MainFrame.OPEN")); //$NON-NLS-1$
+		setDescription(Localization.get("MainFrame.OPEN_DESC")); //$NON-NLS-1$
+		setIcon("/resource/icons/file_open.gif"); //$NON-NLS-1$
+		setAccelerator(KeyEvent.VK_O, SHORTCUT_KEY);
+		setMnemonic(1);
+	}
 }
