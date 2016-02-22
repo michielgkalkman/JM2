@@ -29,7 +29,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -86,6 +85,7 @@ import jmemorize.gui.swing.actions.edit.EditCardAction;
 import jmemorize.gui.swing.actions.edit.FindAction;
 import jmemorize.gui.swing.actions.edit.RemoveAction;
 import jmemorize.gui.swing.actions.edit.ResetCardAction;
+import jmemorize.gui.swing.actions.file.AbstractExportAction;
 import jmemorize.gui.swing.actions.file.ExitAction;
 import jmemorize.gui.swing.actions.file.JMemorizeUI;
 import jmemorize.gui.swing.actions.file.NewLessonAction;
@@ -109,16 +109,15 @@ import jmemorize.util.ExtensionFileFilter;
  * 
  * @author djemili
  */
-public class MainFrame extends JFrame implements CategoryObserver,
-		SelectionProvider, SelectionObserver, LearnSessionObserver,
-		ProgramEndObserver, JMemorizeUI {
+public class MainFrame extends JFrame implements CategoryObserver, SelectionProvider, SelectionObserver,
+		LearnSessionObserver, ProgramEndObserver, JMemorizeUI {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2885593013862395823L;
 	static public final TransferHandler TRANSFER_HANDLER = new GeneralTransferHandler();
-	public static final ExtensionFileFilter FILE_FILTER = new ExtensionFileFilter(
-			"jml", Localization.get(LC.FILE_FILTER_DESC));
+	public static final ExtensionFileFilter FILE_FILTER = new ExtensionFileFilter("jml",
+			Localization.get(LC.FILE_FILTER_DESC));
 
 	private static final String FRAME_ID = "main";
 	private static final String REPEAT_CARD = "repeatCard";
@@ -158,7 +157,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	private List<Category> m_focusedCategories;
 
 	private final JMemorizeIO jMemorizeIO;
-	
+
 	// set look and feel before we load any frames
 	static {
 		try {
@@ -178,8 +177,8 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 * Creates a new MainFrame.
 	 */
 	public MainFrame() {
-		jMemorizeIO = new JmlIO();
-		
+		jMemorizeIO = new JmlIO(this);
+
 		m_main = Main.getInstance();
 
 		initComponents();
@@ -215,8 +214,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 */
 	@Override
 	public List<Card> getRelatedCards() {
-		return m_focusedCategories == null ? getCurrentSelectionProvider()
-				.getRelatedCards() : null;
+		return m_focusedCategories == null ? getCurrentSelectionProvider().getRelatedCards() : null;
 	}
 
 	/*
@@ -226,8 +224,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 */
 	@Override
 	public List<Card> getSelectedCards() {
-		return m_focusedCategories == null ? getCurrentSelectionProvider()
-				.getSelectedCards() : null;
+		return m_focusedCategories == null ? getCurrentSelectionProvider().getSelectedCards() : null;
 	}
 
 	/*
@@ -360,8 +357,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	public void showCategoryTree(final boolean show) {
 		if (!show) {
 			if (m_showCategoryTree) {
-				m_categoryTreeWidth = m_horizontalSplitPane
-						.getDividerLocation();
+				m_categoryTreeWidth = m_horizontalSplitPane.getDividerLocation();
 			}
 
 			m_horizontalSplitPane.setDividerSize(0);
@@ -387,14 +383,12 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		return m_showCategoryTree;
 	}
 
-	public void startLearning(final Category category,
-			final List<Card> selectedCards, final boolean learnUnlearned,
+	public void startLearning(final Category category, final List<Card> selectedCards, final boolean learnUnlearned,
 			final boolean learnExpired) {
 		m_showCategoryTreeOld = m_showCategoryTree;
 		showCategoryTree(false);
 
-		m_main.startLearnSession(m_main.getLearnSettings(), selectedCards,
-				category, learnUnlearned, learnExpired);
+		m_main.startLearnSession(m_main.getLearnSettings(), selectedCards, category, learnUnlearned, learnExpired);
 	}
 
 	public NewCardFramesManager getNewCardManager() // TODO pull up to a new
@@ -429,8 +423,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 * @see jmemorize.core.CategoryObserver
 	 */
 	@Override
-	public void onCardEvent(final int type, final Card card,
-			final Category category, final int deck) {
+	public void onCardEvent(final int type, final Card card, final Category category, final int deck) {
 		// ignore
 	}
 
@@ -443,35 +436,35 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 *            The path to the lesson. If <code>null</code> a file chooser is
 	 *            shown that allows the user to select the file.
 	 */
-//	public void loadLesson(File file) {
-//		try {
-//			final File lessonFile = determineLessonFile(file);
-//
-//			if( lessonFile != null) {
-//				m_main.loadLesson(file);
-//				
-//				
-//				
-//				Settings.storeLastDirectory(file);
-//	
-//				final LearnHistory history = m_main.getLesson().getLearnHistory();
-//				if (!history.isLoaded())
-//					importGlobalLearnHistory(history);
-//			}
-//		} catch (final Exception e) {
-//			final Object[] args = { file != null ? file.getName() : "?" };
-//			final MessageFormat form = new MessageFormat(
-//					Localization.get(LC.ERROR_LOAD));
-//			final String msg = form.format(args);
-//			Main.logThrowable(msg, e);
-//
-//			new ErrorDialog(this, msg, e).setVisible(true);
-//		}
-//	}
+	// public void loadLesson(File file) {
+	// try {
+	// final File lessonFile = determineLessonFile(file);
+	//
+	// if( lessonFile != null) {
+	// m_main.loadLesson(file);
+	//
+	//
+	//
+	// Settings.storeLastDirectory(file);
+	//
+	// final LearnHistory history = m_main.getLesson().getLearnHistory();
+	// if (!history.isLoaded())
+	// importGlobalLearnHistory(history);
+	// }
+	// } catch (final Exception e) {
+	// final Object[] args = { file != null ? file.getName() : "?" };
+	// final MessageFormat form = new MessageFormat(
+	// Localization.get(LC.ERROR_LOAD));
+	// final String msg = form.format(args);
+	// Main.logThrowable(msg, e);
+	//
+	// new ErrorDialog(this, msg, e).setVisible(true);
+	// }
+	// }
 
-	private File determineLessonFile(File file) {
+	private File determineLessonFile(final File file) {
 		final File lessonFile;
-		if (!confirmCloseLesson()) {
+		if (!allowTheUserToSaveIfClosing()) {
 			lessonFile = null;
 		} else if (file == null) {
 			final JFileChooser chooser = new JFileChooser();
@@ -503,30 +496,30 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 *            The path to the lesson. If <code>null</code> a file chooser is
 	 *            shown that allows the user to select the file.
 	 */
-//	public void saveLesson(final Lesson lesson, File file) {
-//		try {
-//			final File detemineLessonSaveFile;
-//			if (file == null) {
-//				detemineLessonSaveFile = AbstractExportAction.showSaveDialog(this,
-//						MainFrame.FILE_FILTER);
-//			} else {
-//				detemineLessonSaveFile = null;
-//			}
-//
-//			if( detemineLessonSaveFile != null) {
-//				m_main.saveLesson(lesson, determineLessonFile(detemineLessonSaveFile));
-//				updateFrameTitle();
-//			}
-//		} catch (final Exception e) {
-//			final Object[] args = { file != null ? file.getName() : "?" };
-//			final MessageFormat form = new MessageFormat(
-//					Localization.get(LC.ERROR_SAVE));
-//			final String msg = form.format(args);
-//			Main.logThrowable(msg, e);
-//
-//			new ErrorDialog(this, msg, e).setVisible(true);
-//		}
-//	}
+	// public void saveLesson(final Lesson lesson, File file) {
+	// try {
+	// final File detemineLessonSaveFile;
+	// if (file == null) {
+	// detemineLessonSaveFile = AbstractExportAction.showSaveDialog(this,
+	// MainFrame.FILE_FILTER);
+	// } else {
+	// detemineLessonSaveFile = null;
+	// }
+	//
+	// if( detemineLessonSaveFile != null) {
+	// m_main.saveLesson(lesson, determineLessonFile(detemineLessonSaveFile));
+	// updateFrameTitle();
+	// }
+	// } catch (final Exception e) {
+	// final Object[] args = { file != null ? file.getName() : "?" };
+	// final MessageFormat form = new MessageFormat(
+	// Localization.get(LC.ERROR_SAVE));
+	// final String msg = form.format(args);
+	// Main.logThrowable(msg, e);
+	//
+	// new ErrorDialog(this, msg, e).setVisible(true);
+	// }
+	// }
 
 	/**
 	 * If lesson was modified this shows a dialog that asks if the user wants to
@@ -536,7 +529,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 *         operation. If this method return <code>false</code> the closing
 	 *         of jMemorize was canceled.
 	 */
-	public boolean confirmCloseLesson() {
+	public boolean allowTheUserToSaveIfClosing() {
 		// first check the editCardFrame for unsaved changes
 		final EditCardFrame editFrame = EditCardFrame.getInstance();
 		if (editFrame.isVisible() && !editFrame.close()) {
@@ -551,23 +544,22 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		// then see if lesson should to be saved
 		final Lesson lesson = m_main.getLesson();
 		if (lesson.canSave()) {
-			final int n = JOptionPane.showConfirmDialog(MainFrame.this,
-					Localization.get("MainFrame.SAVE_MODIFIED"), "Warning", //$NON-NLS-1$ //$NON-NLS-2$
-					JOptionPane.YES_NO_CANCEL_OPTION,
-					JOptionPane.WARNING_MESSAGE);
+			final int n = JOptionPane.showConfirmDialog(MainFrame.this, Localization.get("MainFrame.SAVE_MODIFIED"), //$NON-NLS-1$
+					"Warning", //$NON-NLS-1$
+					JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
 
 			if (n == JOptionPane.OK_OPTION) {
 				try {
 					jMemorizeIO.saveLesson(lesson);
-		        } catch (Exception exception) {
-		        	File file = jMemorizeIO.getFile();
-		            Object[] args = {file != null ? file.getName() : "?"};
-		            MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
-		            String msg = form.format(args);
-		            Main.logThrowable(msg, exception);
-		           
-		            new ErrorDialog(this, msg, exception).setVisible(true);
-		        }
+				} catch (final Exception exception) {
+					final File file = jMemorizeIO.getFile();
+					final Object[] args = { file != null ? file.getName() : "?" };
+					final MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
+					final String msg = form.format(args);
+					Main.logThrowable(msg, exception);
+
+					new ErrorDialog(this, msg, exception).setVisible(true);
+				}
 				// if lesson was saved return true, false otherwise
 				return !lesson.canSave();
 			}
@@ -586,13 +578,12 @@ public class MainFrame extends JFrame implements CategoryObserver,
 	 */
 	@Override
 	public void onProgramEnd() {
-		final int hSize = m_showTreeButton.isSelected() ? m_horizontalSplitPane
-				.getDividerLocation() : m_categoryTreeWidth;
+		final int hSize = m_showTreeButton.isSelected() ? m_horizontalSplitPane.getDividerLocation()
+				: m_categoryTreeWidth;
 		Settings.storeCategoryTreeWidth(hSize);
 
-		final int vSize = m_verticalSplitPane.getDividerLocation() > 0 ? m_verticalSplitPane
-				.getDividerLocation() : m_verticalSplitPane
-				.getLastDividerLocation();
+		final int vSize = m_verticalSplitPane.getDividerLocation() > 0 ? m_verticalSplitPane.getDividerLocation()
+				: m_verticalSplitPane.getLastDividerLocation();
 		Settings.storeMainDividerLocation(vSize);
 
 		Settings.storeCategoryTreeVisible(m_showTreeButton.isSelected());
@@ -627,8 +618,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		if (!session.isRelevant())
 			return;
 
-		final JDialog dialog = new OkayButtonDialog(this,
-				Localization.get("Learn.SESSION_RESULTS"), //$NON-NLS-1$ 
+		final JDialog dialog = new OkayButtonDialog(this, Localization.get("Learn.SESSION_RESULTS"), //$NON-NLS-1$
 				true, new SessionChartPanel(session));
 
 		dialog.setLocationRelativeTo(this);
@@ -652,8 +642,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		m_deckTablePanel.getCardTable().removeSelectionObserver(this);
 		m_learnPanel.addSelectionObserver(this);
 
-		((CardLayout) m_bottomPanel.getLayout()).show(m_bottomPanel,
-				REPEAT_CARD);
+		((CardLayout) m_bottomPanel.getLayout()).show(m_bottomPanel, REPEAT_CARD);
 
 		m_focusedCategories = null;
 
@@ -707,7 +696,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		northPanel.add(buildOperationsBar());
 		northPanel.add(buildCategoryBar());
 
-		m_categoryTree = new CategoryTree( jMemorizeIO);
+		m_categoryTree = new CategoryTree(jMemorizeIO);
 		m_categoryTree.addSelectionObserver(new SelectionObserver() {
 
 			@Override
@@ -758,8 +747,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 			}
 		});
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				getClass().getResource("/resource/icons/main.png"))); //$NON-NLS-1$
+		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/icons/main.png"))); //$NON-NLS-1$
 		pack();
 	}
 
@@ -770,8 +758,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		try {
 			// the following code is equivalent to 'new AppleAdapter();' but
 			// separates the apple code entirely from the main code
-			final Class<?> appleAdapter = ClassLoader.getSystemClassLoader()
-					.loadClass("jmemorize.gui.AppleAdapter");
+			final Class<?> appleAdapter = ClassLoader.getSystemClassLoader().loadClass("jmemorize.gui.AppleAdapter");
 			appleAdapter.newInstance();
 
 			// store that we have an apple menu
@@ -797,8 +784,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		m_showTreeButton.setPreferredSize(new Dimension(120, 21));
 		categoryToolbar.add(m_showTreeButton);
 
-		final JLabel categoryLabel = new JLabel(Localization.get(LC.CATEGORY),
-				SwingConstants.CENTER);
+		final JLabel categoryLabel = new JLabel(Localization.get(LC.CATEGORY), SwingConstants.CENTER);
 		categoryLabel.setPreferredSize(new Dimension(60, 15));
 		categoryToolbar.add(categoryLabel);
 
@@ -837,8 +823,7 @@ public class MainFrame extends JFrame implements CategoryObserver,
 		operationsToolbar.add(new JButton(new FindAction(this)));
 		operationsToolbar.add(new JButton(new LearnAction(this)));
 
-		final JPanel operationsPanel = new JPanel(new FlowLayout(
-				FlowLayout.LEFT, 1, 1));
+		final JPanel operationsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 1, 1));
 		operationsPanel.add(operationsToolbar);
 
 		return operationsPanel;
@@ -860,49 +845,47 @@ public class MainFrame extends JFrame implements CategoryObserver,
 
 	private void loadSettings() {
 		showCategoryTree(Settings.loadCategoryTreeVisible());
-		m_verticalSplitPane.setDividerLocation(Settings
-				.loadMainDividerLocation());
+		m_verticalSplitPane.setDividerLocation(Settings.loadMainDividerLocation());
 		Settings.loadFrameState(this, FRAME_ID);
 	}
 
 	private void importGlobalLearnHistory(final LearnHistory history) {
 		final LearnHistory globalHistory = m_main.getGlobalLearnHistory();
 		for (final SessionSummary summary : globalHistory.getSummaries()) {
-			history.addSummary(summary.getStart(), summary.getEnd(),
-					(int) summary.getPassed(), (int) summary.getFailed(),
-					(int) summary.getSkipped(), (int) summary.getRelearned());
+			history.addSummary(summary.getStart(), summary.getEnd(), (int) summary.getPassed(),
+					(int) summary.getFailed(), (int) summary.getSkipped(), (int) summary.getRelearned());
 		}
 	}
 
 	@Override
-	public File determineLessonFile() {
+	public File determineLessonFileToOpen() {
 		// from determineLessonFile(file):
 		final File lessonFile;
-		if (!confirmCloseLesson()) {
-			lessonFile = null;
+		final JFileChooser chooser = new JFileChooser();
+		try {
+			chooser.setCurrentDirectory(Settings.loadLastDirectory());
+		} catch (final Exception ioe) {
+			Main.logThrowable("Could not load last directory", ioe);
+			chooser.setCurrentDirectory(null);
+		}
+
+		chooser.setFileFilter(MainFrame.FILE_FILTER);
+		final int returnVal = chooser.showOpenDialog(this);
+		if (returnVal == JFileChooser.APPROVE_OPTION) {
+			lessonFile = chooser.getSelectedFile();
 		} else {
-			final JFileChooser chooser = new JFileChooser();
-			try {
-				chooser.setCurrentDirectory(Settings.loadLastDirectory());
-			} catch (final Exception ioe) {
-				Main.logThrowable("Could not load last directory", ioe);
-				chooser.setCurrentDirectory(null);
-			}
-
-			chooser.setFileFilter(MainFrame.FILE_FILTER);
-
-			final int returnVal = chooser.showOpenDialog(this);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				lessonFile = chooser.getSelectedFile();
-			} else {
-				lessonFile = null;
-			}
+			lessonFile = null;
 		}
 		return lessonFile;
 	}
 
 	@Override
-	public void show(Lesson lesson) {
+	public void show(final Lesson lesson) {
 		setLesson(lesson);
+	}
+
+	@Override
+	public File determineLessonFileToSave() {
+		return AbstractExportAction.showSaveDialog(this, MainFrame.FILE_FILTER);
 	}
 }

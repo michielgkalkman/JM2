@@ -30,7 +30,7 @@ import jmemorize.gui.swing.frames.MainFrame;
  * An action that opens a recently used lesson. Before dismissing the current
  * lesson, the user is asked for confirmation.
  * 
- * @see MainFrame#confirmCloseLesson()
+ * @see MainFrame#allowTheUserToSaveIfClosing()
  * 
  * @author djemili
  * 

@@ -34,7 +34,7 @@ import jmemorize.gui.swing.frames.MainFrame;
  * An action that opens another lesson. Before dismissing the current lesson,
  * the user is asked for confirmation.
  * 
- * @see MainFrame#confirmCloseLesson()
+ * @see MainFrame#allowTheUserToSaveIfClosing()
  * 
  * @author djemili
  */
@@ -59,7 +59,7 @@ public class OpenLessonAction extends AbstractSessionDisabledAction {
 	 */
 	@Override
 	public void actionPerformed(final java.awt.event.ActionEvent e) {
-		final File file = jMemorizeUI.determineLessonFile();
+		final File file = jMemorizeUI.determineLessonFileToOpen();
 		if (file != null) {
 			try {
 				final Lesson lesson = new Lesson(true);

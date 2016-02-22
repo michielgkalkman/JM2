@@ -30,7 +30,7 @@ import jmemorize.gui.swing.frames.MainFrame;
  * An action that creates a new lesson. Before dismissing the current lesson,
  * the user is asked for confirmation.
  * 
- * @see MainFrame#confirmCloseLesson()
+ * @see MainFrame#allowTheUserToSaveIfClosing()
  * 
  * @author djemili
  */
@@ -48,7 +48,7 @@ public class NewLessonAction extends AbstractSessionDisabledAction
     {
         Main main = Main.getInstance();
         
-        if (main.getFrame().confirmCloseLesson())
+        if (main.getFrame().allowTheUserToSaveIfClosing())
         {
             main.createNewLesson();
         }

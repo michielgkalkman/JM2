@@ -26,7 +26,7 @@ import jmemorize.gui.swing.frames.MainFrame;
 /**
  * An action that exists jMemorize (after confirmation).
  * 
- * @see MainFrame#confirmCloseLesson() 
+ * @see MainFrame#allowTheUserToSaveIfClosing() 
  * 
  * @author djemili
  */
@@ -49,7 +49,7 @@ public class ExitAction extends AbstractSessionDisabledAction
     {
         Main main = Main.getInstance();
     
-        if (main.getFrame().confirmCloseLesson())
+        if (main.getFrame().allowTheUserToSaveIfClosing())
         {
             main.exit();
         }

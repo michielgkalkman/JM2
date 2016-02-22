@@ -25,9 +25,7 @@ import java.text.MessageFormat;
 
 import jmemorize.core.LC;
 import jmemorize.core.Lesson;
-import jmemorize.core.LessonObserver;
 import jmemorize.core.Localization;
-import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
 import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
@@ -39,58 +37,57 @@ import jmemorize.gui.swing.frames.MainFrame;
  * 
  * @author djemili
  */
-public class SaveLessonAsAction extends AbstractSessionDisabledAction
-{
-    /**
+public class SaveLessonAsAction extends AbstractSessionDisabledAction {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8736393309136546337L;
 	private final JMemorizeIO jMemorizeIO;
 
-	public SaveLessonAsAction(JMemorizeIO jMemorizeIO)
-    {
-        this.jMemorizeIO = jMemorizeIO;
+	public SaveLessonAsAction(final JMemorizeIO jMemorizeIO) {
+		this.jMemorizeIO = jMemorizeIO;
 		setValues();
-    }
-    
-    /* (non-Javadoc)
-     * @see java.awt.event.ActionListener
-     */
-    public void actionPerformed(java.awt.event.ActionEvent e)
-    {
-        Main main = Main.getInstance();
+	}
 
-        MainFrame frame = main.getFrame();
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.awt.event.ActionListener
+	 */
+	@Override
+	public void actionPerformed(final java.awt.event.ActionEvent e) {
+		final Main main = Main.getInstance();
 
-        // TODO needs to be abstract - could as well be a db or some other storage
-        File file = AbstractExportAction.showSaveDialog(
-                frame, MainFrame.FILE_FILTER);
-        
-        try {
-	        if( file != null) {
-	    		Lesson lesson = main.getLesson();
+		final MainFrame frame = main.getFrame();
+
+		// TODO needs to be abstract - could as well be a db or some other
+		// storage
+		final File file = frame.determineLessonFileToSave();
+
+		try {
+			if (file != null) {
+				final Lesson lesson = main.getLesson();
 				jMemorizeIO.save(file, lesson);
-	    		
+
 				lesson.lessonSaved();
-	    		
-	    		// TODO updateFrameTitle(); triggered by save()
-	        }
-        } catch (Exception exception) {
-            Object[] args = {file != null ? file.getName() : "?"};
-            MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
-            String msg = form.format(args);
-            Main.logThrowable(msg, exception);
-           
-            new ErrorDialog(frame, msg, exception).setVisible(true);
-        }        
-    }
- 
-    private void setValues()
-    {
-        setName(Localization.get("MainFrame.SAVE_AS")); //$NON-NLS-1$
-        setDescription(Localization.get("MainFrame.SAVE_AS_DESC")); //$NON-NLS-1$
-        setIcon("/resource/icons/file_saveas.gif"); //$NON-NLS-1$
-        setAccelerator(KeyEvent.VK_S, SHORTCUT_KEY + InputEvent.SHIFT_MASK);
-        setMnemonic(2);
-    }
+
+				// TODO updateFrameTitle(); triggered by save()
+			}
+		} catch (final Exception exception) {
+			final Object[] args = { file != null ? file.getName() : "?" };
+			final MessageFormat form = new MessageFormat(Localization.get(LC.ERROR_SAVE));
+			final String msg = form.format(args);
+			Main.logThrowable(msg, exception);
+
+			new ErrorDialog(frame, msg, exception).setVisible(true);
+		}
+	}
+
+	private void setValues() {
+		setName(Localization.get("MainFrame.SAVE_AS")); //$NON-NLS-1$
+		setDescription(Localization.get("MainFrame.SAVE_AS_DESC")); //$NON-NLS-1$
+		setIcon("/resource/icons/file_saveas.gif"); //$NON-NLS-1$
+		setAccelerator(KeyEvent.VK_S, SHORTCUT_KEY + InputEvent.SHIFT_MASK);
+		setMnemonic(2);
+	}
 }
