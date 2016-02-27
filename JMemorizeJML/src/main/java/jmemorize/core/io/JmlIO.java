@@ -121,4 +121,9 @@ public class JmlIO implements JMemorizeIO {
 	public File getFile() {
 		return file;
 	}
+
+	@Override
+	public void reset() {
+		file = null;
+	}
 }

@@ -7,7 +7,7 @@ import jmemorize.core.Lesson;
 
 public interface JMemorizeIO {
 	public void load(final File file, final Lesson lesson) throws IOException;
-	
+
 	public void save(final File file, final Lesson lesson) throws IOException;
 
 	public void exportLesson(Lesson cleanLesson, File file);
@@ -21,5 +21,7 @@ public interface JMemorizeIO {
 	public File getFile();
 
 	public void loadLesson(Lesson lesson) throws IOException;
-	
+
+	public void reset();
+
 }

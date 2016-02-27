@@ -182,7 +182,6 @@ public class MainFrame extends JFrame implements CategoryObserver, SelectionProv
 		m_main = Main.getInstance();
 
 		initComponents();
-		initAppleAdapter();
 
 		loadSettings();
 
@@ -428,100 +427,6 @@ public class MainFrame extends JFrame implements CategoryObserver, SelectionProv
 	}
 
 	/**
-	 * Loads the lesson and sets it as currently loaded lesson. If there is
-	 * already a opened lesson, the user might be prompted to save that lesson
-	 * before opening the new lesson.
-	 * 
-	 * @param file
-	 *            The path to the lesson. If <code>null</code> a file chooser is
-	 *            shown that allows the user to select the file.
-	 */
-	// public void loadLesson(File file) {
-	// try {
-	// final File lessonFile = determineLessonFile(file);
-	//
-	// if( lessonFile != null) {
-	// m_main.loadLesson(file);
-	//
-	//
-	//
-	// Settings.storeLastDirectory(file);
-	//
-	// final LearnHistory history = m_main.getLesson().getLearnHistory();
-	// if (!history.isLoaded())
-	// importGlobalLearnHistory(history);
-	// }
-	// } catch (final Exception e) {
-	// final Object[] args = { file != null ? file.getName() : "?" };
-	// final MessageFormat form = new MessageFormat(
-	// Localization.get(LC.ERROR_LOAD));
-	// final String msg = form.format(args);
-	// Main.logThrowable(msg, e);
-	//
-	// new ErrorDialog(this, msg, e).setVisible(true);
-	// }
-	// }
-
-	private File determineLessonFile(final File file) {
-		final File lessonFile;
-		if (!allowTheUserToSaveIfClosing()) {
-			lessonFile = null;
-		} else if (file == null) {
-			final JFileChooser chooser = new JFileChooser();
-			try {
-				chooser.setCurrentDirectory(Settings.loadLastDirectory());
-			} catch (final Exception ioe) {
-				Main.logThrowable("Could not load last directory", ioe);
-				chooser.setCurrentDirectory(null);
-			}
-
-			chooser.setFileFilter(MainFrame.FILE_FILTER);
-
-			final int returnVal = chooser.showOpenDialog(this);
-			if (returnVal == JFileChooser.APPROVE_OPTION) {
-				lessonFile = chooser.getSelectedFile();
-			} else {
-				lessonFile = null;
-			}
-		} else {
-			lessonFile = null;
-		}
-		return lessonFile;
-	}
-
-	/**
-	 * Saves the lesson or displays an error message if the operation failed.
-	 * 
-	 * @param file
-	 *            The path to the lesson. If <code>null</code> a file chooser is
-	 *            shown that allows the user to select the file.
-	 */
-	// public void saveLesson(final Lesson lesson, File file) {
-	// try {
-	// final File detemineLessonSaveFile;
-	// if (file == null) {
-	// detemineLessonSaveFile = AbstractExportAction.showSaveDialog(this,
-	// MainFrame.FILE_FILTER);
-	// } else {
-	// detemineLessonSaveFile = null;
-	// }
-	//
-	// if( detemineLessonSaveFile != null) {
-	// m_main.saveLesson(lesson, determineLessonFile(detemineLessonSaveFile));
-	// updateFrameTitle();
-	// }
-	// } catch (final Exception e) {
-	// final Object[] args = { file != null ? file.getName() : "?" };
-	// final MessageFormat form = new MessageFormat(
-	// Localization.get(LC.ERROR_SAVE));
-	// final String msg = form.format(args);
-	// Main.logThrowable(msg, e);
-	//
-	// new ErrorDialog(this, msg, e).setVisible(true);
-	// }
-	// }
-
-	/**
 	 * If lesson was modified this shows a dialog that asks if the user wants to
 	 * save the lesson before closing it.
 	 * 
@@ -551,6 +456,8 @@ public class MainFrame extends JFrame implements CategoryObserver, SelectionProv
 			if (n == JOptionPane.OK_OPTION) {
 				try {
 					jMemorizeIO.saveLesson(lesson);
+
+					jMemorizeIO.reset();
 				} catch (final Exception exception) {
 					final File file = jMemorizeIO.getFile();
 					final Object[] args = { file != null ? file.getName() : "?" };
@@ -749,30 +656,6 @@ public class MainFrame extends JFrame implements CategoryObserver, SelectionProv
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/resource/icons/main.png"))); //$NON-NLS-1$
 		pack();
-	}
-
-	private void initAppleAdapter() {
-		// the following code checks for apple specific classes and loads the
-		// apple event adapter
-		boolean hasAppleMenu = false;
-		try {
-			// the following code is equivalent to 'new AppleAdapter();' but
-			// separates the apple code entirely from the main code
-			final Class<?> appleAdapter = ClassLoader.getSystemClassLoader().loadClass("jmemorize.gui.AppleAdapter");
-			appleAdapter.newInstance();
-
-			// store that we have an apple menu
-			hasAppleMenu = true;
-		}
-
-		catch (final Throwable th) {
-			// we are not on a os x system
-		}
-
-		// remove normal exit item from file menu
-		if (hasAppleMenu) {
-			// todo
-		}
 	}
 
 	private JPanel buildCategoryBar() {
