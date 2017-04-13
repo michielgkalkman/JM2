@@ -24,9 +24,7 @@ import java.io.IOException;
 import jmemorize.core.LC;
 import jmemorize.core.Lesson;
 import jmemorize.core.Localization;
-import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
-import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.frames.MainFrame;
 import jmemorize.util.ExtensionFileFilter;
 

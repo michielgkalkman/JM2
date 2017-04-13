@@ -21,7 +21,6 @@ package jmemorize.gui.swing.actions.file;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 
 import jmemorize.core.LC;

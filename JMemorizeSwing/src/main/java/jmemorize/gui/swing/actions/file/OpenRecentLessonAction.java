@@ -20,7 +20,6 @@ package jmemorize.gui.swing.actions.file;
 
 import java.io.File;
 
-import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
 import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;

@@ -26,7 +26,6 @@ import javax.swing.filechooser.FileFilter;
 import jmemorize.core.LC;
 import jmemorize.core.Lesson;
 import jmemorize.core.Localization;
-import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
 import jmemorize.gui.swing.frames.MainFrame;
 

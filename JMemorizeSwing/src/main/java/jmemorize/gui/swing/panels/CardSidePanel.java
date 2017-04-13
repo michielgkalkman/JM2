@@ -80,7 +80,6 @@ import jmemorize.core.LC;
 import jmemorize.core.Localization;
 import jmemorize.gui.swing.CardFont;
 import jmemorize.gui.swing.ColorConstants;
-import jmemorize.gui.swing.Main;
 
 /**
  * @author djemili

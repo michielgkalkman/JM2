@@ -20,14 +20,12 @@ package jmemorize.gui.swing.actions.file;
 
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.text.MessageFormat;
 
 import jmemorize.core.LC;
 import jmemorize.core.Lesson;
 import jmemorize.core.LessonObserver;
 import jmemorize.core.Localization;
-import jmemorize.core.Model;
 import jmemorize.core.io.JMemorizeIO;
 import jmemorize.gui.swing.Main;
 import jmemorize.gui.swing.actions.AbstractSessionDisabledAction;
