@@ -39,6 +39,10 @@ import jmemorize.util.ExtensionFileFilter;
 public abstract class AbstractExportAction extends AbstractSessionDisabledAction
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 4796919436735117677L;
+	/**
      * Displays a Save As or Export dialog, and to confirm overwrites,
      * and to attach specified file extension.
      * 
