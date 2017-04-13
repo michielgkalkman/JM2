@@ -32,7 +32,12 @@ import jmemorize.gui.swing.frames.MainFrame;
  */
 public class ExitAction extends AbstractSessionDisabledAction
 {
-    public ExitAction()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8376136679108920714L;
+
+	public ExitAction()
     {
         setValues();
     }

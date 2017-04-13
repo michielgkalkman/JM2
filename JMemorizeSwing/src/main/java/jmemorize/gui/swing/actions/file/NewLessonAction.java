@@ -36,7 +36,12 @@ import jmemorize.gui.swing.frames.MainFrame;
  */
 public class NewLessonAction extends AbstractSessionDisabledAction
 {
-    public NewLessonAction()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6624014841233722746L;
+
+	public NewLessonAction()
     {
         setValues();
     }
