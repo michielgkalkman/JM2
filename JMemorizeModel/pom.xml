@@ -91,6 +91,7 @@
 								<param>jmemorize*</param>
 							</targetTests>
 							<timeoutConstant>12000</timeoutConstant>
+							<reportsDirectory>${user.home}/.reports/pitest</reportsDirectory>
 						</configuration>
 					</plugin>
 				</plugins>
