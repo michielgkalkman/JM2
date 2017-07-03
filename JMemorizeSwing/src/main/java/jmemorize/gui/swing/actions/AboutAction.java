@@ -29,7 +29,12 @@ import jmemorize.gui.swing.dialogs.AboutDialog;
  */
 public class AboutAction extends AbstractAction2
 {
-    public AboutAction()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -9134297249664945013L;
+
+	public AboutAction()
     {
         setValues();
     }

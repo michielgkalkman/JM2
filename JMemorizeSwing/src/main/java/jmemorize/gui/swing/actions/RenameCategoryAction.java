@@ -40,7 +40,11 @@ import jmemorize.gui.swing.SelectionProvider.SelectionObserver;
 public class RenameCategoryAction extends AbstractAction2 
     implements SelectionObserver, LearnSessionObserver
 {
-    private SelectionProvider m_selectionProvider;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7280904546012422280L;
+	private SelectionProvider m_selectionProvider;
 
     public RenameCategoryAction(SelectionProvider selectionProvider)
     {

@@ -29,7 +29,11 @@ import jmemorize.gui.swing.frames.MainFrame;
  */
 public class SplitMainFrameAction extends AbstractAction2
 {
-    private static final String NOT_SPLIT_ICON = 
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -4474013757258004102L;
+	private static final String NOT_SPLIT_ICON = 
         "/resource/icons/application_split.png";
     private static final String SPLIT_ICON = 
         "/resource/icons/application_xp.png";

@@ -11,7 +11,11 @@ import jmemorize.util.BareBonesBrowserLaunch;
  */
 public class OpenURLAction extends AbstractAction2
 {
-    private final String m_name;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1082168273444688923L;
+	private final String m_name;
     private final String m_url;
 
     public OpenURLAction(String name, String url)

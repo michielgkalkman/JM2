@@ -33,7 +33,12 @@ import jmemorize.gui.swing.frames.MainFrame;
 //TODO rename to ToggleCategoryTreeAction
 public class ShowCategoryTreeAction extends AbstractSessionDisabledAction
 {
-    public ShowCategoryTreeAction()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1917779524145895728L;
+
+	public ShowCategoryTreeAction()
     {
         setValues();
     }

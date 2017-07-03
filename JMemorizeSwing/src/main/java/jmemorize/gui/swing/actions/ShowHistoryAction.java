@@ -35,7 +35,12 @@ import jmemorize.gui.swing.panels.HistoryChartPanel;
  */
 public class ShowHistoryAction extends AbstractAction2
 {
-    public ShowHistoryAction()
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1155137087068497805L;
+
+	public ShowHistoryAction()
     {
         setValues();
     }

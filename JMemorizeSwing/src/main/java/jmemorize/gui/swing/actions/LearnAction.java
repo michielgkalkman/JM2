@@ -40,7 +40,11 @@ import jmemorize.gui.swing.frames.MainFrame;
 public class LearnAction extends AbstractSessionDisabledAction 
     implements SelectionObserver, CategoryObserver
 {
-    private SelectionProvider m_selectionProvider;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1772039892656618386L;
+	private SelectionProvider m_selectionProvider;
     private Category          m_category;
 
     public LearnAction(SelectionProvider selectionProvider)
