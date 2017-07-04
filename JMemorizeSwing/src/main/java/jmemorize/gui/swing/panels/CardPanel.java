@@ -255,7 +255,12 @@ public class CardPanel extends JPanel
     
     private class BoldAction extends AbstractStyledTextAction
     {
-        public BoldAction()
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = -5937967171310303118L;
+
+		public BoldAction()
         {
             super("font-bold");
             addShortcut(KeyStroke.getKeyStroke(KeyEvent.VK_B, CTRL_MASK));
