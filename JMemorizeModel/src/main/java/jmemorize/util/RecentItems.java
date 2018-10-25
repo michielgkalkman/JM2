@@ -56,9 +56,10 @@ public class RecentItems
         m_items.remove(item);
         m_items.add(0, item);
         
-        if (m_items.size() > m_maxItems)
+        final int size = m_items.size();
+        if (size > m_maxItems)
         {
-            m_items.remove(m_items.size() - 1);
+            m_items.remove(size - 1);
         }
         
         update();

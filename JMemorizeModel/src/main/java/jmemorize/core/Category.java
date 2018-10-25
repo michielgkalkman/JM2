@@ -697,19 +697,20 @@ public class Category implements Events {
 		// find child category with most decks
 		int maxChildDecks = 0;
 		for (Category child : m_childCategories) {
-			if (child.getNumberOfDecks() > maxChildDecks) {
-				maxChildDecks = child.getNumberOfDecks();
+			final int numberOfDecks = child.getNumberOfDecks();
+            if (numberOfDecks > maxChildDecks) {
+				maxChildDecks = numberOfDecks;
 			}
 		}
 
 		// grow decks
-		while (maxChildDecks > getNumberOfDecks()) {
+		while (maxChildDecks > m_decks.size()) {
 			m_decks.add(new ArrayList<Card>());
 		}
 
 		// trim decks
-		while (maxChildDecks < getNumberOfDecks() && (m_decks.get(getNumberOfDecks() - 1)).isEmpty()) {
-			m_decks.remove(getNumberOfDecks() - 1);
+		while (maxChildDecks < m_decks.size() && (m_decks.get(m_decks.size() - 1)).isEmpty()) {
+			m_decks.remove(m_decks.size() - 1);
 		}
 	}
 }

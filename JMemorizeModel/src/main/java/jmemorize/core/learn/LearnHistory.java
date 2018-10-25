@@ -325,10 +325,11 @@ public class LearnHistory {
 	}
 
 	public SessionSummary getLastSummary() {
-		if (m_summaries.size() == 0)
+		final int size = m_summaries.size();
+        if (size == 0)
 			return null;
 
-		return m_summaries.get(m_summaries.size() - 1);
+		return m_summaries.get(size - 1);
 	}
 
 	public List<SessionSummary> getSummaries() {
@@ -336,8 +337,9 @@ public class LearnHistory {
 	}
 
 	public List<SessionSummary> getSummaries(final int limit) {
-		final int n = Math.min(limit, m_summaries.size());
-		return m_summaries.subList(m_summaries.size() - n, m_summaries.size());
+		final int size = m_summaries.size();
+        final int n = Math.min(limit, size);
+		return m_summaries.subList(size - n, size);
 	}
 
 	public List<SessionSummary> getSummaries(final CalendarComparator comp) {

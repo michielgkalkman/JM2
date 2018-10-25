@@ -151,8 +151,9 @@ public class Settings {
 																// default
 
 		// if preconfigured schedule
-		if (preset > -1 && preset < SchedulePreset.values().length - 1) {
-			settings.setSchedulePreset(SchedulePreset.values()[preset]);
+		final SchedulePreset[] values = SchedulePreset.values();
+        if (preset > -1 && preset < values.length - 1) {
+			settings.setSchedulePreset(values[preset]);
 		} else // if custom
 		{
 			final int[] schedule = PreferencesTool.getIntArray(PREFS, SCHEDULE);

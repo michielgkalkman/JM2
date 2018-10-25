@@ -25,6 +25,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +37,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import jmemorize.core.Card;
+import jmemorize.core.CardSide;
 import jmemorize.core.Category;
 import jmemorize.core.CategoryObserver;
 import jmemorize.util.EquivalenceClassSet;
@@ -471,7 +473,8 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 		final Card currentCard = m_currentCardInfo.getCard();
 
 		// Note that we do not remove the card from m_cardsChecked.
-		m_logger.fine("cardSkipped: " + currentCard.getFrontSide());
+		final CardSide frontSide = currentCard.getFrontSide();
+        m_logger.fine("cardSkipped: " + frontSide);
 
 		assert !m_cardsLearned.contains(currentCard);
 		assert !m_cardsReserve.contains(m_currentCardInfo);
@@ -497,7 +500,7 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 			m_cardsReserve.addExpired(m_currentCardInfo);
 			m_cardsActive.remove(m_currentCardInfo);
 
-			m_logger.fine("Moving to reserve: " + currentCard.getFrontSide());
+			m_logger.fine("Moving to reserve: " + frontSide);
 			m_logger.fine("Moving to active: " + replacementCard.getFrontSide());
 		}
 
@@ -712,11 +715,12 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 		} else {
 			final CardInfo lastCardInfo = m_currentCardInfo;
 
-			m_currentCardInfo = m_cardsActive.loopIterator().next();
+			final Iterator<CardInfo> loopIterator = m_cardsActive.loopIterator();
+            m_currentCardInfo = loopIterator.next();
 
 			// prevent the same card from occuring twice in a row
 			if (m_cardsActive.size() > 1 && lastCardInfo == m_currentCardInfo) {
-				m_currentCardInfo = m_cardsActive.loopIterator().next();
+				m_currentCardInfo = loopIterator.next();
 			}
 
 			// add the new card to the checked list now so it can be edited as
@@ -741,9 +745,10 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 	 *         <code>false</code> otherwise.
 	 */
 	private boolean checkIfFlipped() {
-		if (m_settings.getSidesMode() == LearnSettings.SIDES_RANDOM) {
+		final int sidesMode = m_settings.getSidesMode();
+        if (sidesMode == LearnSettings.SIDES_RANDOM) {
 			return m_rand.nextInt(2) == 1; // 50% chance
-		} else if (m_settings.getSidesMode() == LearnSettings.SIDES_BOTH) {
+		} else if (sidesMode == LearnSettings.SIDES_BOTH) {
 			// allocate the side proportionally to the amount they have left to
 			// learn
 			final Card currentCard = m_currentCardInfo.getCard();
@@ -767,7 +772,7 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 					+ timesToLearnBack);
 			return rand < timesToLearnBack;
 		} else {
-			return (m_settings.getSidesMode() == LearnSettings.SIDES_FLIPPED);
+			return (sidesMode == LearnSettings.SIDES_FLIPPED);
 		}
 	}
 
@@ -791,7 +796,8 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 			cards.addAll(selectedCards);
 
 		final List<Integer> levels = new LinkedList<Integer>();
-		final List<CardInfo> cardInfos = new ArrayList<CardInfo>(cards.size());
+		final int cardsSize = cards.size();
+        final List<CardInfo> cardInfos = new ArrayList<CardInfo>(cardsSize);
 		m_cardsInfoMap.clear();
 
 		for (final Card card : cards) {
@@ -800,17 +806,19 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 
 			m_cardsInfoMap.put(card, cardInfo);
 
-			if (!levels.contains(card.getLevel()))
-				levels.add(card.getLevel());
+			final int level = card.getLevel();
+            if (!levels.contains(level))
+				levels.add(level);
 		}
 
 		// shuffle random cards
 		final float shuffleRatio = m_settings.getShuffleRatio();
-		final int shuffledCardsCount = (int) (shuffleRatio * cards.size());
+		final int shuffledCardsCount = (int) (shuffleRatio * cardsSize);
 
 		final List<CardInfo> shuffledCardInfos = new ArrayList<CardInfo>(
 				shuffledCardsCount);
-		if (levels.size() > 1) {
+		final int size = levels.size();
+        if (size > 1) {
 			for (int i = 0; i < shuffledCardsCount; i++) {
 				final int randIndex = m_rand.nextInt(cardInfos.size());
 
@@ -818,7 +826,7 @@ public class DefaultLearnSession implements CategoryObserver, LearnSession {
 				shuffledCardInfos.add(cardInfo);
 
 				// randomly find a new level, which ISN'T our current level
-				int randLevel = m_rand.nextInt(levels.size() - 1);
+				int randLevel = m_rand.nextInt(size - 1);
 
 				if (randLevel >= cardInfo.getLevel())
 					randLevel++;
